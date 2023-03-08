@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'identity'
     ];
 
     /**
@@ -41,4 +43,39 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isHimpunan()
+    {
+        return $this->role === 'himpunan';
+    }
+
+    public function isMahasiswa()
+    {
+        return $this->role === 'mahasiswa';
+    }
+
+    public function isDosen()
+    {
+        return $this->role === 'dosen';
+    }
+
+    public function isJurusan()
+    {
+        return $this->role === 'jurusan';
+    }
+
+    public function isBEM()
+    {
+        return $this->role === 'BEM';
+    }
+
+    public function requests()
+    {
+        return $this->hasMany(Request::class);
+    }
 }
