@@ -46,32 +46,8 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return $this->role === 'admin';
-    }
-
-    public function isHimpunan()
-    {
-        return $this->role === 'himpunan';
-    }
-
-    public function isMahasiswa()
-    {
-        return $this->role === 'mahasiswa';
-    }
-
-    public function isDosen()
-    {
-        return $this->role === 'dosen';
-    }
-
-    public function isJurusan()
-    {
-        return $this->role === 'jurusan';
-    }
-
-    public function isBEM()
-    {
-        return $this->role === 'BEM';
+        $adminRoles = ['admin', 'bem', 'himpunan', 'kepala_jurusan'];
+        return in_array($this->role, $adminRoles);
     }
 
     public function requests()
