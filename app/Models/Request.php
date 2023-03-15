@@ -16,6 +16,10 @@ class Request extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function room() {
+        return $this->hasOne(Room::class);
+    }
+
     public function getStatusAttribute($value)
     {
         if ($value === 'pending') {

@@ -13,7 +13,7 @@ class RoomPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+
     }
 
     /**
@@ -29,7 +29,7 @@ class RoomPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->isAdmin();
     }
 
     /**
