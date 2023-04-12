@@ -13,25 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 // admin
 Route::group(['middleware' => ['auth', 'admin']], function () {
-    Route::get('/admin', function () {
-        return response('Admin', 200);
-    });
+  Route::get('/admin', function () {
+    return response('Admin', 200);
+  });
 });
 
 // user guest
-
 Route::group(['middleware' => ['guest']], function () {
-    Route::get('/login', function () {
-        return response('Login', 200);
-    });
+  Route::get('/login', function () {
+    return view('auth.login');
+  });
 
-    Route::get('/register', function() {
-        return response('Register', 200);
-    });
+  Route::get('/register', function () {
+    return view('auth.register');
+  });
 });
