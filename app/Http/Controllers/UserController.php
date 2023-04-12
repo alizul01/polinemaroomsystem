@@ -15,8 +15,7 @@ class UserController extends Controller
     public function index(): Response
     {
         $users = User::all();
-
-        return response()->view('users.index', compact('users'));
+        return response(200)->view('users.index', compact('users'));
     }
 
     /**
@@ -32,7 +31,7 @@ class UserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        //
+        
     }
 
     /**

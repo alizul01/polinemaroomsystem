@@ -15,7 +15,7 @@ class ApprovalController extends Controller
      */
     public function index(): Response
     {
-        //
+        return response()->view('admin.pages.approval');
     }
 
     /**
