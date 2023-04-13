@@ -31,7 +31,7 @@ class ApprovalController extends Controller
      */
     public function store(StoreApprovalRequest $request): RedirectResponse
     {
-        //
+        $request->validated();
     }
 
     /**
@@ -39,7 +39,7 @@ class ApprovalController extends Controller
      */
     public function show(Approval $approval): Response
     {
-        //
+        return redirect()->route('login');
     }
 
     /**
@@ -55,7 +55,8 @@ class ApprovalController extends Controller
      */
     public function update(UpdateApprovalRequest $request, Approval $approval): RedirectResponse
     {
-        //
+        $approval->update($request->validated());
+        return redirect()->route('login');
     }
 
     /**

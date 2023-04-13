@@ -11,7 +11,7 @@ class StoreApprovalRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StoreApprovalRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'request_id' => ['required', 'integer', 'exists:requests,id'],
+            'jurusan_approved' => ['boolean', 'required'],
+            
         ];
     }
 }

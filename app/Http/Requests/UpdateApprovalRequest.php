@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateApprovalRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateApprovalRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +22,19 @@ class UpdateApprovalRequest extends FormRequest
      */
     public function rules(): array
     {
+        $userRole = auth()->user()->role;
         return [
-            //
+            'request_id' => ['required', 'integer', 'exists:requests,id'],
+            'jurusan_approved' => ['nullable', Rule::requiredIf(function() use ($userRole) {
+                return $userRole === 'kepala_jurusan';
+            })],
+            'himpunan_approved' => ['nullable', Rule::requiredIf(function() use ($userRole) {
+                return $userRole === 'himpunan';
+            })],
+            'bem_approved' => ['nullable', Rule::requiredIf(function() use ($userRole) {
+                return $userRole === 'bem';
+            })],
+            
         ];
     }
 }
