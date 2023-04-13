@@ -34,7 +34,7 @@ class UpdateApprovalRequest extends FormRequest
             'bem_approved' => ['nullable', Rule::requiredIf(function() use ($userRole) {
                 return $userRole === 'bem';
             })],
-            
+
         ];
     }
 }
