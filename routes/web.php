@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 // admin
 Route::group(['middleware' => ['auth', 'admin']], function () {
-    Route::get('/admin', function () {
-        return response('Admin', 200);
-    });
+  Route::get('/admin', function () {
+    return response('Admin', 200);
+  });
 
-    Route::resource('approval', ApprovalController::class)->parameter('approval', 'id');
+  Route::resource('approval', ApprovalController::class)->parameter('approval', 'id');
 });
 
 // user guest
