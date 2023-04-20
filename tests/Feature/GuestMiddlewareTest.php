@@ -34,9 +34,4 @@ class GuestMiddlewareTest extends TestCase
             ->get('/register')
             ->assertStatus(302);
     }
-
-    // public function test_not_logged_users_can_access_register_pages_routes() {
-    //     $this->get('/register')
-    //         ->assertOk();
-    // }
 }

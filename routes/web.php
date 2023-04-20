@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 // user guest
 Route::group(['middleware' => ['guest']], function () {
     Route::get('/login', function () {
-        return response('Login', 200);
+        return view('auth.login');
     });
 
   Route::get('/register', function () {
