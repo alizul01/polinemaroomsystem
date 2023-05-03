@@ -11,9 +11,15 @@
         <i class="bx bx-user text-xl text-gray-500"></i>
       @endif
     </div>
-    <input type="{{ $type }}" id="{{ $name }}" name="{{ $name }}"
-      class="w-full py-3 pl-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500"
-      placeholder="{{ $placeholder }}" value="{{ old($name) }}" />
+    @if ($autofocus == 'true')
+      <input type="{{ $type }}" id="{{ $name }}" name="{{ $name }}"
+        class="w-full py-3 pl-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500"
+        placeholder="{{ $placeholder }}" value="{{ old($name) }}" autofocus />
+    @else
+      <input type="{{ $type }}" id="{{ $name }}" name="{{ $name }}"
+        class="w-full py-3 pl-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500"
+        placeholder="{{ $placeholder }}" value="{{ old($name) }}" />
+    @endif
   </div>
 
   @error($name)
