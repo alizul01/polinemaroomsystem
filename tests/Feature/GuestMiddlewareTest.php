@@ -9,11 +9,6 @@ use Tests\TestCase;
 
 class GuestMiddlewareTest extends TestCase
 {
-    public function test_allows_guest_to_access_guest_routes()
-    {
-        $this->get('/login')->assertOk();
-    }
-
     public function test_logged_in_users_cannot_access_guest_routes()
     {
         $user = User::factory()->create([

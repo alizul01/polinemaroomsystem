@@ -18,6 +18,7 @@
 import './laravel-commands';
 import './laravel-routes';
 import './assertions';
+import 'cypress-file-upload';
 
 before(() => {
     cy.task('activateCypressEnvFile', {}, { log: false });

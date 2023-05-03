@@ -16,7 +16,7 @@ class AuthController extends Controller
     if (Auth::attempt($credentials)) {
       $request->session()->regenerate();
       toast()->success('Login success');
-      return redirect()->intended('dashboard');
+      return redirect()->route('index');
     } else {
       return back()->withErrors([
         'email' => 'The provided credentials do not match our records.',
@@ -44,7 +44,7 @@ class AuthController extends Controller
     Auth::login($user);
 
     toast()->success('Register success');
-    return redirect()->intended('index');
+    return redirect()->route('index');
   }
 
   public function logout(Request $request)
