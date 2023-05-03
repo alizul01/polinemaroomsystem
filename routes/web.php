@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 Route::group(['middleware' => ['auth']], function () {
   Route::get('/', function () {
     return view('index');
-  });
+  })->name('index');
   Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
