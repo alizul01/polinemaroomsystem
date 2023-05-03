@@ -14,6 +14,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
+
+  {{-- Link Icon --}}
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   {{-- Link Css --}}
   @vite('resources/css/app.css')
 </head>
