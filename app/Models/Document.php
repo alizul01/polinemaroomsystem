@@ -11,8 +11,8 @@ class Document extends Model
 
     protected $guarded = ['id'];
 
-    public function request()
+    public function roomReservation()
     {
-        return $this->belongsTo(Request::class);
+        return $this->belongsTo(RoomReservation::class);
     }
 }

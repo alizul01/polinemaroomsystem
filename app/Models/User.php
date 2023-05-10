@@ -17,13 +17,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'role',
-        'identity'
-    ];
+    protected $guarded = ['id'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -44,14 +38,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function isAdmin()
+    public function organizations()
     {
-        $adminRoles = ['admin', 'bem', 'himpunan', 'kepala_jurusan'];
-        return in_array($this->role, $adminRoles);
+        return $this->belongsTo(Organization::class);
     }
 
-    public function requests()
+    public function roomReservation()
     {
-        return $this->hasMany(Request::class);
+        return $this->hasMany(RoomReservation::class);
     }
 }

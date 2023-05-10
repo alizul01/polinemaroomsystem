@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('documents', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('request_id')->constrained();
-            $table->string('doc_file');
+            $table->string('name');
+            $table->string('email');
+            $table->enum('role', ['Admin', 'User', 'Super Admin']);
+            $table->string('identity');
+            $table->foreignId('organization_id')->constrained('organizations');
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('documents');
+        Schema::dropIfExists('users');
     }
 };

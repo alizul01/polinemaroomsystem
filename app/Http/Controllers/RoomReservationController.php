@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Request;
-use App\Http\Requests\StoreRequestRequest;
-use App\Http\Requests\UpdateRequestRequest;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
+use App\Models\RoomReservation;
+use App\Http\Requests\StoreRoomReservationRequest;
+use App\Http\Requests\UpdateRoomReservationRequest;
 
-class RequestController extends Controller
+class RoomReservationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): Response
+    public function index()
     {
         //
     }
@@ -21,7 +19,7 @@ class RequestController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): Response
+    public function create()
     {
         //
     }
@@ -29,7 +27,7 @@ class RequestController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRequestRequest $request): RedirectResponse
+    public function store(StoreRoomReservationRequest $request)
     {
         //
     }
@@ -37,7 +35,7 @@ class RequestController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request): Response
+    public function show(RoomReservation $roomReservation)
     {
         //
     }
@@ -45,7 +43,7 @@ class RequestController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request): Response
+    public function edit(RoomReservation $roomReservation)
     {
         //
     }
@@ -53,7 +51,7 @@ class RequestController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRequestRequest $request, Request $request): RedirectResponse
+    public function update(UpdateRoomReservationRequest $request, RoomReservation $roomReservation)
     {
         //
     }
@@ -61,7 +59,7 @@ class RequestController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(RoomReservation $roomReservation)
     {
         //
     }

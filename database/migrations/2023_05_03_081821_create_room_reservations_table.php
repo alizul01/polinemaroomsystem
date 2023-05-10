@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('requests', function (Blueprint $table) {
+        Schema::create('room_reservations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('room_id');
-            $table->foreign('room_id')->references('id')->on('rooms')->restrictOnDelete();
-            $table->foreign('user_id')->references('id')->on('users')->restrictOnDelete();
-            $table->date('request_date');
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('room_id')->constrained('rooms');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
+            $table->text('purpose');
+            $table->enum('status', ['Pending', 'Approved', 'Rejected']);
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('requests');
+        Schema::dropIfExists('room_reservations');
     }
 };
