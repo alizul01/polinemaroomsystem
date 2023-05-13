@@ -17,15 +17,13 @@
 
   {{-- Link Icon --}}
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  {{-- Link Css --}}
-  @vite('resources/css/app.css')
+  {{-- Link Css & Js --}}
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="font-sans">
   @include('sweetalert::alert')
   @yield('master')
-  {{-- Link Js --}}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
 </body>
 
 </html>
