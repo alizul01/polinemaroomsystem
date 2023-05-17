@@ -11,9 +11,21 @@ class CardRoom extends Component
   /**
    * Create a new component instance.
    */
-  public function __construct(public string $status)
+
+   public $name;
+    public $code;
+    public $capacity;
+    public $floor;
+    public $image;
+    public $status;
+  public function __construct($name, $code, $capacity, $floor, $image, $status)
   {
-    //
+    $this->name = $name;
+    $this->code = $code;
+    $this->capacity = $capacity;
+    $this->floor = $floor;
+    $this->image = $image;
+    $this->status = $status;
   }
 
   /**
