@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->enum('role', ['Admin', 'User', 'Super Admin']);
+            $table->string("password");
+            $table->enum('role', ['admin', 'user', 'superadmin']);
             $table->string('identity');
-            $table->foreignId('organization_id')->constrained('organizations');
+            $table->foreignId('organization_id')->nullable();
             $table->timestamps();
         });
     }

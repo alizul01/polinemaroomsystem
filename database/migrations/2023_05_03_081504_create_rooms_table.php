@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('code');
             $table->string('name');
-            $table->integer('capacity');    
+            $table->integer('floor');
+            $table->string('image');
+            $table->integer('capacity');
             $table->timestamps();
         });
     }
