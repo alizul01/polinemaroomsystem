@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ApprovalController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,25 +15,44 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/dashboard', function () {
+  return view('user.dashboard', [
+    'active' => 'home',
+    'isHome' => true
+  ]);
+});
+Route::get('/ruangan', function () {
+  return view('user.ruangan', [
+    'active' => 'ruangan',
+    'isHome' => false
+  ]);
 });
 
 // admin
 Route::group(['middleware' => ['auth', 'admin']], function () {
-    Route::get('/admin', function () {
-        return response('Admin', 200);
-    });
+  Route::get('/admin', function () {
+    return response('Admin', 200);
+  });
+  Route::resource('approval', ApprovalController::class)->parameter('approval', 'id');
+});
+
+Route::group(['middleware' => ['auth']], function () {
+  Route::get('/', function () {
+    return view('index');
+  })->name('index');
+  Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 // user guest
-
 Route::group(['middleware' => ['guest']], function () {
-    Route::get('/login', function () {
-        return response('Login', 200);
-    });
+  Route::get('/login', function () {
+    return view('auth.login');
+  })->name('login');
 
-    Route::get('/register', function() {
-        return response('Register', 200);
-    });
+  Route::get('/register', function () {
+    return view('auth.register');
+  })->name('register');
+
+  Route::post('/login', [AuthController::class, 'login']);
+  Route::post('/register', [AuthController::class, 'register']);
 });

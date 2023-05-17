@@ -37,7 +37,9 @@ class ApprovalPolicy
      */
     public function update(User $user, Approval $approval): bool
     {
-        //
+        // if the user is a jurusan, then he can only update the jurusan_approved field and it's required
+        
+
     }
 
     /**
