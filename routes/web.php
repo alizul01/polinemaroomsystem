@@ -15,6 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/dashboard', function () {
+  return view('user.dashboard', [
+    'active' => 'home',
+    'isHome' => true
+  ]);
+});
+Route::get('/ruangan', function () {
+  return view('user.ruangan', [
+    'active' => 'ruangan',
+    'isHome' => false
+  ]);
+});
+
 // admin
 Route::group(['middleware' => ['auth', 'admin']], function () {
   Route::get('/admin', function () {
