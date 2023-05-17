@@ -21,6 +21,7 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->email,
             'password' => bcrypt('password'),
             'role' => 'user',
+            'organization_id' => 1,
             'identity' => 'identity_file',
         ];
     }
