@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreApprovalRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,9 +22,7 @@ class StoreApprovalRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'request_id' => ['required', 'integer', 'exists:requests,id'],
-            'jurusan_approved' => ['boolean', 'required'],
-            
+            //
         ];
     }
 }

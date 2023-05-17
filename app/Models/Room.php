@@ -11,8 +11,8 @@ class Room extends Model
 
     protected $guarded = ['id'];
 
-    public function request()
+    public function roomReservation()
     {
-        return $this->belongsTo(Request::class);
+        return $this->hasMany(RoomReservation::class);
     }
 }
