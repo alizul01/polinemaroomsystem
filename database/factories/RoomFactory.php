@@ -30,7 +30,8 @@ class RoomFactory extends Factory
             'name' => $rooms[$randomKey],
             'code' => $randomKey,
             'capacity' => $this->faker->numberBetween(30, 60),
-            'is_available' => $this->faker->boolean,
+            'floor' => $this->faker->numberBetween(1, 3),
+            'image' => 'https://source.unsplash.com/1920x1080/?classroom?sig=' . $this->faker->numberBetween(1, 1000),
         ];
     }
 }

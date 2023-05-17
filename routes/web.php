@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,31 +17,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/dashboard', function () {
-  return view('user.dashboard', [
-    'active' => 'home',
-    'isHome' => true
-  ]);
-});
-Route::get('/ruangan', function () {
-  return view('user.ruangan', [
-    'active' => 'ruangan',
-    'isHome' => false
-  ]);
-});
-
 // admin
 Route::group(['middleware' => ['auth', 'admin']], function () {
   Route::get('/admin', function () {
     return response('Admin', 200);
   });
-  Route::resource('approval', ApprovalController::class)->parameter('approval', 'id');
 });
 
 Route::group(['middleware' => ['auth']], function () {
-  Route::get('/', function () {
-    return view('index');
-  })->name('index');
+  Route::get('/', [DashboardController::class, 'index'])->name('home');
+  Route::resource('/room', RoomController::class);
   Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
