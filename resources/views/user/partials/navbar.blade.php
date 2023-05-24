@@ -27,13 +27,13 @@
           </a>
         </li>
         <li>
-          <a href=""
+          <a href="/reservasi"
             class="no-underline {{ $active == 'reservasi' ? 'text-white' : 'text-white/40 hover:text-white' }}">
             <span>Reservasi</span>
           </a>
         </li>
         <li>
-          <a href=""
+          <a href="/proses"
             class="no-underline {{ $active == 'proses' ? 'text-white' : 'text-white/40 hover:text-white' }}">
             <span>Proses</span>
           </a>

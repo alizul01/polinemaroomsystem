@@ -21,10 +21,19 @@ Route::get('/dashboard', function () {
     'isHome' => true
   ]);
 });
+
 Route::get('/ruangan', function () {
   return view('user.ruangan', [
     'active' => 'ruangan',
     'isHome' => false
+  ]);
+});
+
+Route::get('/reservasi', function () {
+  return view('user.reservasi', [
+    'active' => 'reservasi',
+    'isHome' => false,
+    'step' => 2
   ]);
 });
 
