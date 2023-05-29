@@ -12,10 +12,10 @@
         <span>Terpakai</span>
       </div>
     @endif
-    <img src="{{ asset('img/ruangan.png') }}" alt="ruangan" class="w-full rounded-lg">
+    <img src="{{ asset($image) }}" alt="{{ $code }}" class="w-full rounded-lg">
   </div>
   <h5 class="text-xl font-medium tracking-tight text-gray-900">
-    Ruang LPY 3
+    {{ $name }}
   </h5>
   <hr>
   <div class="flex flex-col gap-2 text-gray-700">
@@ -24,7 +24,7 @@
     @elseif($status == 'terpakai')
       <span>Status : <span class="font-bold">Dipakai</span></span>
     @endif
-    <span>Kapasitas : 40 Orang</span>
+    <span>Kapasitas : {{ $capacity }} Orang</span>
   </div>
   <div class="flex flex-col gap-2">
     @if ($status == 'kosong')
@@ -36,7 +36,7 @@
         Booking Ruangan
       </button>
     @endif
-    <a href="#"
+    <a href="{{ $code }}"
       class="text-gray-900 hover:text-white border border-gray-600 hover:bg-gray-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center no-underline">
       Lihat Detail Ruangan
     </a>
