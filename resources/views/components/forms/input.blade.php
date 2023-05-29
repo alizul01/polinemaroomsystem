@@ -1,6 +1,5 @@
 <div>
-  <label for="{{ $name }}"
-    class="block mb-2 text-sm font-medium dark:text-white">{{ $label }}</label>
+  <label for="{{ $name }}" class="block mb-2 text-sm font-medium">{{ $label }}</label>
   <div class="relative">
     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
       @if ($icon == 'email')
