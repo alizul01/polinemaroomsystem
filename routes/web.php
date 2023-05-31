@@ -35,7 +35,10 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 Route::group(['middleware' => ['auth']], function () {
   Route::get('/', [DashboardController::class, 'index'])->name('index');
   Route::resource('room', RoomController::class);
-  Route::resource('reservation', RoomReservationController::class);
+  Route::get('/reservation', [RoomReservationController::class, 'showStep1'])->name('reservation.index');
+  Route::post('/reservation', [RoomReservationController::class, 'postStep1'])->name('reservation.store');
+  Route::get('/reservation-2', [RoomReservationController::class, 'showStep2'])->name('reservation2.index');
+  Route::post('/reservation-2', [RoomReservationController::class, 'postStep2'])->name('reservation2.store');
   Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
