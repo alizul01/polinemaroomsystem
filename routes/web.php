@@ -4,6 +4,8 @@ use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\RoomReservationController;
+use App\Models\RoomReservation;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,26 +18,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/dashboard', function () {
-  return view('user.dashboard', [
-    'active' => 'home',
-    'isHome' => true
-  ]);
-});
-
 Route::get('/ruangan', function () {
   return view('user.ruangan', [
     'active' => 'ruangan',
     'isHome' => false
-  ]);
-});
-
-Route::get('/reservasi', function () {
-  return view('user.reservasi', [
-    'active' => 'reservasi',
-    'isHome' => false,
-    'step' => 2
   ]);
 });
 
@@ -47,8 +33,9 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 });
 
 Route::group(['middleware' => ['auth']], function () {
-  Route::get('/', [DashboardController::class, 'index'])->name('home');
-  Route::resource('/room', RoomController::class);
+  Route::get('/', [DashboardController::class, 'index'])->name('index');
+  Route::resource('room', RoomController::class);
+  Route::resource('reservation', RoomReservationController::class);
   Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
