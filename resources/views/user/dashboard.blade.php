@@ -15,7 +15,7 @@
             </div>
             <div class="grid grid-cols-3 gap-4">
                 @foreach ($rooms as $room)
-                    <x-dashboard.card-room status="kosong" :name="$room->name" :image="$room->image" :capacity="$room->capacity" :code="$room->code" :floor="$room->floor" />
+                    <x-dashboard.card-room :id="$room->id" status="kosong" :name="$room->name" :image="$room->image" :capacity="$room->capacity" :code="$room->code" :floor="$room->floor" />
                 @endforeach
             </div>
         </section>

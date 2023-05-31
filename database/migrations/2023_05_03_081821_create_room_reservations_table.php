@@ -16,9 +16,10 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('room_id')->constrained('rooms');
             $table->dateTime('start_date');
-            $table->dateTime('end_date');
-            $table->text('purpose');
-            $table->enum('status', ['Pending', 'Approved', 'Rejected']);
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->text('keterangan');
+            $table->enum('status', ['Pending', 'Approved', 'Rejected'])->default('Pending');
             $table->timestamps();
         });
     }

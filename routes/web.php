@@ -39,6 +39,8 @@ Route::group(['middleware' => ['auth']], function () {
   Route::post('/reservation', [RoomReservationController::class, 'postStep1'])->name('reservation.store');
   Route::get('/reservation-2', [RoomReservationController::class, 'showStep2'])->name('reservation2.index');
   Route::post('/reservation-2', [RoomReservationController::class, 'postStep2'])->name('reservation2.store');
+  Route::get('/reservation-final', [RoomReservationController::class, 'showFinal'])->name('reservation.final');
+  Route::post('/reservation-final', [RoomReservationController::class, 'finish'])->name('reservation.final.store');
   Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 

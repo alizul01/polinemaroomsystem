@@ -36,10 +36,10 @@
                         :code="$room->code" :floor="$room->floor" :id="$room->id" />
                 @endforeach
                 <input type="text" id="room_id" hidden name="room_id">
-                <button type="submit" class="bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm px-5 py-3">
-                    Pilih
-                </button>
             </div>
+            <button type="submit" class="bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm px-10 text-white py-3 mt-10 ">
+                Pilih
+            </button>
         </form>
     </section>
 
