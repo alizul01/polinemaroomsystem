@@ -5,15 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\RoomReservation;
 use App\Http\Requests\StoreRoomReservationRequest;
 use App\Http\Requests\UpdateRoomReservationRequest;
+use App\Models\Organization;
+use App\Models\Room;
+use Illuminate\Http\Request;
 
 class RoomReservationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+      $rooms = Room::all();
+      $organizations = Organization::all();
+      $step = 1;
+      return view('user.reservasi', compact('rooms', 'step', 'organizations'));
     }
 
     /**

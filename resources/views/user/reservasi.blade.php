@@ -37,6 +37,9 @@
       @include('user.partials.components.reservasi-step1')
     @elseif($step == 2)
       @include('user.partials.components.reservasi-step2')
+    @elseif($step == 3)
+      @include('user.partials.components.reservasi-step1')
+      @include('user.partials.components.reservasi-step2')
     @endif
   </main>
 @endsection
