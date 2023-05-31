@@ -2,71 +2,76 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RoomReservation;
-use App\Http\Requests\StoreRoomReservationRequest;
-use App\Http\Requests\UpdateRoomReservationRequest;
 use App\Models\Organization;
-use App\Models\Room;
 use Illuminate\Http\Request;
+use App\Models\Room;
+use App\Models\RoomReservation;
 
 class RoomReservationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(Request $request)
-    {
-      $rooms = Room::all();
-      $organizations = Organization::all();
-      $step = 1;
-      return view('user.reservasi', compact('rooms', 'step', 'organizations'));
+  public function showStep1(Request $request)
+  {
+    $rooms = Room::all();
+    $organizations = Organization::all();
+    $step = 1;
+    return view('user.partials.components.reservasi-step1', compact('rooms', 'organizations', 'step'));
+  }
+
+  public function postStep1(Request $request)
+  {
+    $validatedData = $request->validate([
+      'nama' => 'required',
+      'nim' => 'required',
+      'phonenumber' => 'required',
+      'organization_id' => 'required|exists:organizations,id',
+      'jam-mulai' => 'required',
+      'jam-selesai' => 'required',
+      'tanggal' => 'required',
+      'keterangan' => 'required',
+    ]);
+
+    session()->put('step1', $validatedData);
+    return redirect()->route('reservation2.index');
+  }
+
+  public function showStep2(Request $request)
+  {
+    $step = 2;
+    if (!$request->session()->has('step1')) {
+      return redirect()->route('form.step1');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    $rooms = Room::all();
+    return view('user.partials.components.reservasi-step2', compact('step', 'rooms'));
+  }
+
+  public function postStep2(Request $request)
+  {
+    $validatedData = $request->validate([
+      'room_id' => 'required|exists:rooms,id',
+    ]);
+
+    $request->session()->put('step2', $validatedData);
+    return redirect()->route('form.step3');
+  }
+
+  public function finish(Request $request)
+  {
+    if (!$request->session()->has('step1') || !$request->session()->has('step2')) {
+      return redirect()->route('finish');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreRoomReservationRequest $request)
-    {
-        //
-    }
+    $step1Data = $request->session()->get('step1');
+    $step2Data = $request->session()->get('step2');
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(RoomReservation $roomReservation)
-    {
-        //
-    }
+    $reservationData = array_merge($step1Data, $step2Data);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(RoomReservation $roomReservation)
-    {
-        //
-    }
+    RoomReservation::create($reservationData);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateRoomReservationRequest $request, RoomReservation $roomReservation)
-    {
-        //
-    }
+    $request->session()->forget('step1');
+    $request->session()->forget('step2');
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(RoomReservation $roomReservation)
-    {
-        //
-    }
+    // Redirect the user to a "thank you" page, or wherever you want them to go when they're done.
+    return redirect()->route('reservations.thank_you');
+  }
 }

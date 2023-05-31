@@ -29,7 +29,7 @@
                 </li>
                 <li>
                     <a href="{{ route('reservation.index') }}"
-                        class="no-underline {{ request()->is('reservation') ? 'text-white' : 'text-white/40 hover:text-white' }}">
+                        class="no-underline {{ request()->is('reservation*') ? 'text-white' : 'text-white/40 hover:text-white' }}">
                         <span>Reservasi</span>
                     </a>
                 </li>
