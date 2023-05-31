@@ -16,7 +16,7 @@
             class="flex lg:flex-row flex-col gap-4 justify-between {{ request()->is('/') ? 'mb-24' : 'mb-[2.6rem]' }}">
             <ul class="flex my-auto justify-between md:justify-start md:gap-10">
                 <li>
-                    <a href="{{ route('home') }}"
+                    <a href="{{ route('index') }}"
                         class="no-underline {{ request()->is('/') ? 'text-white' : 'text-white/40 hover:text-white' }}">
                         <span>Home</span>
                     </a>
@@ -28,8 +28,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href=""
-                        class="no-underline {{ request()->is('reservasi') ? 'text-white' : 'text-white/40 hover:text-white' }}">
+                    <a href="{{ route('reservation.index') }}"
+                        class="no-underline {{ request()->is('reservation') ? 'text-white' : 'text-white/40 hover:text-white' }}">
                         <span>Reservasi</span>
                     </a>
                 </li>
