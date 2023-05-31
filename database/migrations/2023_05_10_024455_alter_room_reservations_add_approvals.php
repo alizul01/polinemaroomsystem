@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('room_reservations', function (Blueprint $table) {
-            $table->boolean('approved_by_himpunan');
-            $table->dateTime('approved_by_himpunan_at');
-            $table->boolean('approved_by_bem');
-            $table->dateTime('approved_by_bem_at');
-            $table->boolean('approved_by_kepala_jurusan');
-            $table->dateTime('approved_by_kepala_jurusan_at');
+            $table->boolean('approved_by_himpunan')->nullable();
+            $table->dateTime('approved_by_himpunan_at')->nullable();
+            $table->boolean('approved_by_bem')->nullable();
+            $table->dateTime('approved_by_bem_at')->nullable();
+            $table->boolean('approved_by_kepala_jurusan')->nullable();
+            $table->dateTime('approved_by_kepala_jurusan_at')->nullable();
         });
     }
 

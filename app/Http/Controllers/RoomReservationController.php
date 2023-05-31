@@ -19,15 +19,16 @@ class RoomReservationController extends Controller
 
   public function postStep1(Request $request)
   {
+    $reservationData['user_id'] = auth()->user()->id;
+    $reservationData['user_id'] = auth()->user()->nomor_induk;
     $validatedData = $request->validate([
-      'nama' => 'required',
-      'nim' => 'required',
-      'phonenumber' => 'required',
-      'organization_id' => 'required|exists:organizations,id',
-      'jam-mulai' => 'required',
-      'jam-selesai' => 'required',
-      'tanggal' => 'required',
-      'keterangan' => 'required',
+     'organization_id' => 'required|exists:organizations,id',
+     'phonenumber' => 'required',
+     'start_date' => 'required',
+     'start_time' => 'required',
+     'end_time' => 'required|after:start_time',
+     'participant' => 'required',
+     'keterangan' => 'required',
     ]);
 
     session()->put('step1', $validatedData);
@@ -41,37 +42,50 @@ class RoomReservationController extends Controller
       return redirect()->route('form.step1');
     }
 
-    $rooms = Room::all();
+    if ($request->has('floor')) {
+      $rooms = Room::where('floor', $request->floor)->get();
+    } else {
+      $rooms = Room::all();
+    }
     return view('user.partials.components.reservasi-step2', compact('step', 'rooms'));
   }
 
   public function postStep2(Request $request)
   {
-    $validatedData = $request->validate([
+  $validatedData = $request->validate([
       'room_id' => 'required|exists:rooms,id',
     ]);
 
     $request->session()->put('step2', $validatedData);
-    return redirect()->route('form.step3');
+    return redirect()->route('reservation.final');
+  }
+
+  public function showFinal() {
+    $step = 3;
+    $step1 = session()->get('step1');
+    $step2 = session()->get('step2');
+    $room = Room::where('id', $step2["room_id"])->first();
+    return view('user.partials.components.finish', compact('step', 'step1', 'step2', 'room'));
   }
 
   public function finish(Request $request)
   {
     if (!$request->session()->has('step1') || !$request->session()->has('step2')) {
-      return redirect()->route('finish');
+      return redirect()->route('reservation.final');
     }
 
     $step1Data = $request->session()->get('step1');
     $step2Data = $request->session()->get('step2');
 
     $reservationData = array_merge($step1Data, $step2Data);
+    $reservationData['user_id'] = auth()->user()->id;
 
     RoomReservation::create($reservationData);
 
     $request->session()->forget('step1');
     $request->session()->forget('step2');
 
-    // Redirect the user to a "thank you" page, or wherever you want them to go when they're done.
-    return redirect()->route('reservations.thank_you');
+    toast()->success('Reservasi berhasil');
+    return redirect()->route('reservation.index');
   }
 }

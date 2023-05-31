@@ -22,6 +22,7 @@ class UserFactory extends Factory
             'password' => bcrypt('password'),
             'role' => 'user',
             'organization_id' => 1,
+            'nomor_induk' => $this->faker->unique()->randomNumber(8),
             'identity' => 'identity_file',
         ];
     }

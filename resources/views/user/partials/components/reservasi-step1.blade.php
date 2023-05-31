@@ -8,20 +8,20 @@
                 <h1 class="text-xl font-medium">Data Peminjam</h1>
                 <div class="flex gap-5">
                     <div class="flex-1">
-                        <label for="nama" class="block mb-2 text-sm text-gray-600">Nama Lengkap
+                        <label for="user_id" class="block mb-2 text-sm text-gray-600">Nama Lengkap
                             <span class="text-red-600">*</span></label>
-                        <input type="text" name="nama" id="nama" autocomplete="given-name" autofocus
-                            class="w-full py-3 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500">
-                        @error('nama')
+                        <input type="text" name="user_id" id="user_id" autocomplete="given-name" autofocus
+                            class="w-full py-3 bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500" value="{{ Auth::user()->name }}" disabled>
+                        @error('user_id')
                             <span class="text-red-600">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="flex-1">
-                        <label for="nim" class="block mb-2 text-sm text-gray-600">NIM/NIP
+                        <label for="nomor_induk" class="block mb-2 text-sm text-gray-600">Nomor Induk
                             <span class="text-red-600">*</span></label>
-                        <input type="text" name="nim" id="nim" autocomplete="given-nim"
-                            class="w-full py-3 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500">
-                        @error('nim')
+                        <input type="text" name="nomor_induk" id="nomor_induk" autocomplete="given-nomor_induk"
+                            class="w-full py-3 bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500" value="{{ Auth::user()->nomor_induk }}" disabled>
+                        @error('nomor_induk')
                             <span class="text-red-600">{{ $message }}</span>
                         @enderror
                     </div>
@@ -52,39 +52,39 @@
                 <h1 class="text-xl font-medium">Data Peminjaman</h1>
                 <div class="flex gap-5">
                     <div class="flex-1">
-                        <label for="tanggal" class="block mb-2 text-sm text-gray-600">Tanggal Peminjaman
+                        <label for="start_date" class="block mb-2 text-sm text-gray-600">Tanggal Peminjaman
                             <span class="text-red-600">*</span></label>
-                        <input type="date" name="tanggal" id="tanggal" autocomplete="given-tanggal"
+                        <input type="date" name="start_date" id="start_date" autocomplete="given-start_date"
                             class="w-full py-3 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500">
-                        @error('tanggal')
+                        @error('start_date')
                             <span class="text-red-600">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="flex-1">
-                        <label for="jam-mulai" class="block mb-2 text-sm text-gray-600">Jam Mulai
+                        <label for="start_time" class="block mb-2 text-sm text-gray-600">Jam Mulai
                             <span class="text-red-600">*</span></label>
-                        <input type="time" name="jam-mulai" id="jam-mulai" autocomplete="given-jam-mulai"
+                        <input type="time" name="start_time" id="start_time" autocomplete="given-start_time"
                             class="w-full py-3 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500">
-                        @error('jam-mulai')
+                        @error('start_time')
                             <span class="text-red-600">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
                 <div class="flex gap-5">
                     <div class="flex-1">
-                        <label for="jam-selesai" class="block mb-2 text-sm text-gray-600">Jam Selesai
+                        <label for="end_time" class="block mb-2 text-sm text-gray-600">Jam Selesai
                             <span class="text-red-600">*</span></label>
-                        <input type="time" name="jam-selesai" id="jam-selesai" autocomplete="given-jam-selesai"
+                        <input type="time" name="end_time" id="end_time" autocomplete="given-end_time"
                             class="w-full py-3 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500">
-                        @error('jam-selesai')
+                        @error('end_time')
                             <span class="text-red-600">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="flex-1">
-                        <label for="orang" class="block mb-2 text-sm text-gray-600">Jumlah Orang</label>
-                        <input type="number" name="orang" id="orang" autocomplete="given-orang"
+                        <label for="participant" class="block mb-2 text-sm text-gray-600">Jumlah Orang</label>
+                        <input type="number" name="participant" id="participant" autocomplete="given-participant"
                             class="w-full py-3 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500">
-                        @error('orang')
+                        @error('participant')
                             <span class="text-red-600">{{ $message }}</span>
                         @enderror
                     </div>
