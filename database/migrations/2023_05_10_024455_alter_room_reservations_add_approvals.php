@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('room_reservations', function (Blueprint $table) {
-            $table->boolean('approved_by_himpunan')->nullable();
+            $table->integer('approved_by_himpunan')->nullable()->default(0);
             $table->dateTime('approved_by_himpunan_at')->nullable();
-            $table->boolean('approved_by_bem')->nullable();
+            $table->integer('approved_by_bem')->nullable()->default(0);
             $table->dateTime('approved_by_bem_at')->nullable();
-            $table->boolean('approved_by_kepala_jurusan')->nullable();
+            $table->integer('approved_by_kepala_jurusan')->nullable()->default(0);
             $table->dateTime('approved_by_kepala_jurusan_at')->nullable();
         });
     }
@@ -26,7 +26,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('RoomReservation', function (Blueprint $table) {
+        Schema::table('room_reservations', function (Blueprint $table) {
             $table->dropColumn('approved_by_himpunan');
             $table->dropColumn('approved_by_bem');
             $table->dropColumn('approved_by_kepala_jurusan');
