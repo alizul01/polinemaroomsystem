@@ -16,7 +16,7 @@
             <div class="grid grid-cols-4 gap-4">
                 @foreach ($rooms as $room)
                     <x-dashboard.card-room status="kosong" :name="$room->name" :image="$room->image" :capacity="$room->capacity"
-                        :code="$room->code" :floor="$room->floor" />
+                        :code="$room->code" :floor="$room->floor" :id="$room->id" />
                 @endforeach
             </div>
         </section>
