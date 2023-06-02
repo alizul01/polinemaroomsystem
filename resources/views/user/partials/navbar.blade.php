@@ -34,7 +34,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href=""
+                    <a href="{{ route('reservation.status') }}"
                         class="no-underline {{ request()->is('process') ? 'text-white' : 'text-white/40 hover:text-white' }}">
                         <span>Proses</span>
                     </a>

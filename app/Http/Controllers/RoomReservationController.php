@@ -88,4 +88,12 @@ class RoomReservationController extends Controller
     toast()->success('Reservasi berhasil');
     return redirect()->route('reservation.index');
   }
+
+  public function reservationStatus(){
+    $reservations = RoomReservation::where('user_id', auth()->user()->id)->get();
+    foreach($reservations as $reservation){
+      $reservation->reservationStatus();
+    }
+    return view('user.reservation-status', compact('reservations'));
+  }
 }
