@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('room_reservations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('room_id')->constrained('rooms');
-            $table->dateTime('start_date');
-            $table->time('start_time');
-            $table->time('end_time');
-            $table->text('keterangan');
+            $table->foreignId('user_id')->constrained('users')->nullable();
+             $table->foreignId('room_id')->constrained('rooms')->nullable();
+            $table->dateTime('start_date')->nullable();
+            $table->time('start_time')->nullable();
+            $table->time('end_time')->nullable();
+            $table->text('keterangan')->nullable();
             $table->enum('status', ['Pending', 'Approved', 'Rejected'])->default('Pending');
             $table->timestamps();
         });
