@@ -27,6 +27,13 @@ Route::get('/ruangan', function () {
   ]);
 });
 
+Route::get('/proses', function () {
+  return view('user.proses', [
+    'active' => 'process',
+    'isHome' => false
+  ]);
+});
+
 // admin
 Route::group(['middleware' => ['auth', 'admin']], function () {
   Route::get('/admin', function () {

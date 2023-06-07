@@ -13,12 +13,12 @@ class CardRoom extends Component
    */
   public $id;
 
-   public $name;
-    public $code;
-    public $capacity;
-    public $floor;
-    public $image;
-    public $status;
+  public $name;
+  public $code;
+  public $capacity;
+  public $floor;
+  public $image;
+  public $status;
   public function __construct($name, $code, $capacity, $floor, $image, $status, $id)
   {
     $this->name = $name;
