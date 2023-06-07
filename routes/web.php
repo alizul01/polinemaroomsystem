@@ -18,9 +18,17 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/ruangan', function () {
   return view('user.ruangan', [
     'active' => 'ruangan',
+    'isHome' => false
+  ]);
+});
+
+Route::get('/proses', function () {
+  return view('user.proses', [
+    'active' => 'process',
     'isHome' => false
   ]);
 });
