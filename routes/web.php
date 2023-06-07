@@ -3,6 +3,7 @@
 use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ReportingController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomReservationController;
 use App\Models\RoomReservation;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/ruangan', function () {
   return view('user.ruangan', [
     'active' => 'ruangan',
@@ -42,6 +44,7 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('/reservation-final', [RoomReservationController::class, 'showFinal'])->name('reservation.final');
   Route::post('/reservation-final', [RoomReservationController::class, 'finish'])->name('reservation.final.store');
   Route::get('/reservation-status', [RoomReservationController::class, 'reservationStatus'])->name('reservation.status');
+  Route::post('/report-pdf', [ReportingController::class, 'createReportingPDF'])->name('user.reservation.generate');
   Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 

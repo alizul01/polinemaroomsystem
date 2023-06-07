@@ -10,9 +10,10 @@ class Organization extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $with = ['users'];
 
     public function users()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
     }
 }
