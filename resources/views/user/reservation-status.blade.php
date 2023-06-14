@@ -22,6 +22,7 @@
                 <th scope="col">Status BEM</th>
                 <th scope="col">Status Ketua Jurusan</th>
                 <th scope="col">Status Reservasi</th>
+                <th scope="col">Aksi</th>
             </thead>
             <tbody>
                 @foreach ($reservations as $item)
@@ -31,17 +32,18 @@
                         <td>{{ $item->room->name }}</td>
                         <td>
                             <span class="badge text-bg-{{ $item->approved_by_himpunan == 1 ? 'success' : 'warning' }}">
-                              {{ $item->approved_by_himpunan == 1 ? 'Disetujui' : 'pending' }}
+                                {{ $item->approved_by_himpunan == 1 ? 'Disetujui' : 'pending' }}
                             </span>
                         </td>
                         <td>
                             <span class="badge text-bg-{{ $item->approved_by_bem == 1 ? 'success' : 'warning' }}">
-                              {{ $item->approved_by_bem == 1 ? 'Disetujui' : 'Pending' }}
+                                {{ $item->approved_by_bem == 1 ? 'Disetujui' : 'Pending' }}
                             </span>
                         </td>
                         <td>
-                            <span class="badge text-bg-{{ $item->approved_by_kepala_jurusan == 1 ? 'success' : 'warning' }}">
-                              {{ $item->approved_by_kepala_jurusan == 1 ? 'Disetujui' : 'Pending' }}
+                            <span
+                                class="badge text-bg-{{ $item->approved_by_kepala_jurusan == 1 ? 'success' : 'warning' }}">
+                                {{ $item->approved_by_kepala_jurusan == 1 ? 'Disetujui' : 'Pending' }}
                             </span>
                         </td>
                         <td>
@@ -52,6 +54,14 @@
                             @else
                                 <span class="badge bg-warning">Pending</span>
                             @endif
+                        </td>
+                        {{-- generate surat --}}
+                        <td>
+                            <form action="{{ route('user.reservation.generate') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="reservation_id" value="{{ $item->id }}">
+                                <button type="submit" class="btn btn-primary">Generate Surat</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

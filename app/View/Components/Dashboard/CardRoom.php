@@ -12,7 +12,6 @@ class CardRoom extends Component
    * Create a new component instance.
    */
   public $id;
-
    public $name;
     public $code;
     public $capacity;
