@@ -36,11 +36,13 @@ Route::get('/proses', function () {
 });
 
 // admin
-Route::group(['middleware' => ['auth', 'admin']], function () {
-  Route::get('/admin', function () {
-    return response('Admin', 200);
-  });
-});
+// Route::group(['middleware' => ['auth', 'admin']], function () {
+//   Route::get('/admin', function () {
+//     return response('Admin', 200);
+//   });
+// });
+
+Route::get('/admin', [RoomReservationController::class, 'adminReservationIndex']);
 
 Route::group(['middleware' => ['auth']], function () {
   Route::get('/', [DashboardController::class, 'index'])->name('index');

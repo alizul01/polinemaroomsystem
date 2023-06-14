@@ -13,12 +13,12 @@
                     </button>
                 </div>
             </div>
-            <div class="grid grid-cols-4 gap-4">
+            <div class="grid grid-cols-3 gap-4">
                 @foreach ($rooms as $room)
-                    <x-dashboard.card-room status="kosong" :name="$room->name" :image="$room->image" :capacity="$room->capacity" :room="$room"
-                        :code="$room->code" :floor="$room->floor" :id="$room->id" :room="$room" />
+                    <x-dashboard.card-room :id="$room->id" status="kosong" :name="$room->name" :image="$room->image" :capacity="$room->capacity" :code="$room->code" :room="$room" :floor="$room->floor" />
                 @endforeach
             </div>
+            {{ $rooms->links('pagination::tailwind') }}
         </section>
         <aside class="flex flex-col gap-6 w-1/3">
             <button class="h-[100px] p-6 bg-gray-800 rounded-lg hover:bg-gray-900">

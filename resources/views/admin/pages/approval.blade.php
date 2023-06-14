@@ -1,5 +1,5 @@
-@extends('layout.admin')
+@extends('layout.master')
 
 @section('master')
-{{ $approval }}
+    {{-- {{ $reservations }} --}}
 @endsection
