@@ -1,3 +1,4 @@
+/// <reference types="cypress" />
 describe('Register Test', () => {
   beforeEach(() => {
     cy.exec('php artisan db:wipe --env=testing && php artisan migrate --env=testing && php artisan db:seed --env=testing');
