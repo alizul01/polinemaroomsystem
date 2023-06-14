@@ -20,13 +20,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/ruangan', function () {
-  return view('user.ruangan', [
-    'active' => 'ruangan',
-    'isHome' => false
-  ]);
-});
-
 Route::get('/ruangan/detail', function () {
   return view('user.ruangan-detail', [
     'active' => 'ruangan',
