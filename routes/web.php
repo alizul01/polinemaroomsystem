@@ -27,6 +27,14 @@ Route::get('/ruangan', function () {
   ]);
 });
 
+Route::get('/ruangan/detail', function () {
+  return view('user.ruangan-detail', [
+    'active' => 'ruangan',
+    'isHome' => false,
+    'status' => 'terpakai'
+  ]);
+});
+
 Route::get('/proses', function () {
   return view('user.proses', [
     'active' => 'process',
