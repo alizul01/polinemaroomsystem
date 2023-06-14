@@ -37,7 +37,7 @@
                 Booking Ruangan
             </button>
         @endif
-        <a href="{{ $code }}"
+        <a href="{{ route('room.show', $room) }}"
             class="text-gray-900 hover:text-white border border-gray-600 hover:bg-gray-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center no-underline">
             Lihat Detail Ruangan
         </a>

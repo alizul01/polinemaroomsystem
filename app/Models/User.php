@@ -38,9 +38,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $with = ['organizations'];
-
-    public function organizations()
+    public function organization()
     {
         return $this->belongsTo(Organization::class);
     }

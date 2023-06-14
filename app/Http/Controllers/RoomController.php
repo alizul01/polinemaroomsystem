@@ -30,7 +30,7 @@ class RoomController extends Controller
    */
   public function store(StoreRoomRequest $request)
   {
-    //
+
   }
 
   /**
@@ -38,7 +38,8 @@ class RoomController extends Controller
    */
   public function show(Room $room)
   {
-    //
+    // redirect to detail-ruangan view
+    // return view('user.detail-ruangan', compact('room'));
   }
 
   /**
