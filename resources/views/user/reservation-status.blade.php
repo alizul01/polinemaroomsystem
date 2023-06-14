@@ -60,7 +60,7 @@
                             <form action="{{ route('user.reservation.generate') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="reservation_id" value="{{ $item->id }}">
-                                <button type="submit" class="btn btn-primary">Generate Surat</button>
+                                <button type="submit" class="btn btn-primary" {{ $item->status != 'Approved' ? 'disabled' : '' }}>Generate Surat</button>
                             </form>
                         </td>
                     </tr>

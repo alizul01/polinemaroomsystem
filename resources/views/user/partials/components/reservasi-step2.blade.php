@@ -32,7 +32,7 @@
             @csrf
             <div class="grid grid-cols-3 gap-4 ">
                 @foreach ($rooms as $room)
-                    <x-dashboard.card-room status="kosong" :name="$room->name" :image="$room->image" :capacity="$room->capacity"
+                    <x-dashboard.card-room status="kosong" :name="$room->name" :image="$room->image" :capacity="$room->capacity" :room="$room"
                         :code="$room->code" :floor="$room->floor" :id="$room->id" />
                 @endforeach
                 <input type="text" id="room_id" hidden name="room_id">
