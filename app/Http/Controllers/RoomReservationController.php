@@ -6,6 +6,7 @@ use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\RoomReservation;
+use App\Models\User;
 
 class RoomReservationController extends Controller
 {
@@ -22,13 +23,13 @@ class RoomReservationController extends Controller
     $reservationData['user_id'] = auth()->user()->id;
     $reservationData['user_id'] = auth()->user()->nomor_induk;
     $validatedData = $request->validate([
-     'organization_id' => 'required|exists:organizations,id',
-     'phonenumber' => 'required',
-     'start_date' => 'required',
-     'start_time' => 'required',
-     'end_time' => 'required|after:start_time',
-     'participant' => 'required',
-     'keterangan' => 'required',
+      'organization_id' => 'required|exists:organizations,id',
+      'phonenumber' => 'required',
+      'start_date' => 'required',
+      'start_time' => 'required',
+      'end_time' => 'required|after:start_time',
+      'participant' => 'required',
+      'keterangan' => 'required',
     ]);
 
     session()->put('step1', $validatedData);
@@ -52,7 +53,7 @@ class RoomReservationController extends Controller
 
   public function postStep2(Request $request)
   {
-  $validatedData = $request->validate([
+    $validatedData = $request->validate([
       'room_id' => 'required|exists:rooms,id',
     ]);
 
@@ -60,7 +61,8 @@ class RoomReservationController extends Controller
     return redirect()->route('reservation.final');
   }
 
-  public function showFinal() {
+  public function showFinal()
+  {
     $step = 3;
     $step1 = session()->get('step1');
     $step2 = session()->get('step2');
@@ -89,11 +91,37 @@ class RoomReservationController extends Controller
     return redirect()->route('reservation.index');
   }
 
-  public function reservationStatus(){
+  public function reservationStatus()
+  {
     $reservations = RoomReservation::where('user_id', auth()->user()->id)->get();
-    foreach($reservations as $reservation){
+    foreach ($reservations as $reservation) {
       $reservation->reservationStatus();
     }
     return view('user.reservation-status', compact('reservations'));
+  }
+
+  public function approve(Request $request, User $user)
+  {
+    $reservation = RoomReservation::findOrFail($request->reservation_id);
+    $role = auth()->user()->role;
+    if ($role == 'kajur') {
+      $reservation->approved_by_kepala_jurusan = true;
+    } else if ($role == 'bem') {
+      $reservation->approved_by_bem = true;
+    } else if ($role == 'hmti') {
+      $reservation->approved_by_hmti = true;
+    } else {
+      toast()->error('Reservasi gagal disetujui');
+      return redirect()->route('admin.reservation.index');
+    }
+    $reservation->save();
+    toast()->success('Reservasi berhasil disetujui');
+    return redirect()->route('admin.pages.approval');
+  }
+
+  public function adminReservationIndex()
+  {
+    $reservations = RoomReservation::all();
+    return view('admin.pages.approval', compact('reservations'));
   }
 }

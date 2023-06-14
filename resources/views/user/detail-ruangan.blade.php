@@ -20,7 +20,7 @@
                 <div class="flex gap-4">
                     <button type="button"
                         class="text-gray-900 bg-white border border-gray-400 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 cursor-default">
-                        Lantai 7
+                        Lantai {{ $room->floor }}
                     </button>
                     @if ($room->status == 'kosong')
                         <button type="button"
@@ -37,8 +37,9 @@
                 </div>
                 <div class="flex justify-between my-2">
                     <h1 class="text-xl font-semibold my-auto">
-                      {{ $room->name }}
+                        {{ $room->name }}
                     </h1>
+                    {{-- TODO: PASS DATA KE CONTROLLER LANGSUNG KE HALAMAN RESERVASI --}}
                     <button
                         class="flex items-center gap-1 text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm px-6 py-4">
                         <i class="bx bx-plus text-lg"></i> Booking Ruangan
@@ -54,7 +55,9 @@
                                         <i class="bx bx-user"></i>
                                         <div class="flex flex-col gap-2">
                                             <span>Estimated Capacity</span>
-                                            <span class="font-medium">60 Pieces</span>
+                                            <span class="font-medium">
+                                                {{ $room->capacity }}
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -63,7 +66,9 @@
                                         <i class="bx bx-chair"></i>
                                         <div class="flex flex-col gap-2">
                                             <span>Chair</span>
-                                            <span class="font-medium">60 Pieces</span>
+                                            <span class="font-medium">
+                                                {{ $room->capacity }}
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -105,48 +110,27 @@
                         <span>Schedule</span>
                         <div class="relative overflow-auto">
                             <div class="flex flex-col gap-6">
-                                <div class="flex flex-col gap-10">
-                                    <div class="flex justify-between bg-yellow-100 rounded-md py-2 px-4">
-                                        <div class="flex gap-2">
-                                            <span class="h-12 w-1.5 border border-black bg-black rounded-sm"></span>
-                                            <div class="flex flex-col">
-                                                <span>07.00 AM - 08.00</span>
-                                                <span>25 Juni 2023</span>
+                                @foreach ($roomReservation as $room)
+                                    <div class="flex flex-col gap-10">
+                                        <div class="flex justify-between bg-yellow-100 rounded-md py-2 px-4">
+                                            <div class="flex gap-2">
+                                                <span class="h-12 w-1.5 border border-black bg-black rounded-sm"></span>
+                                                <div class="flex flex-col">
+                                                    <span>
+                                                        {{ \Carbon\Carbon::parse($room->start_time)->format('H:i') }} -
+                                                        {{ \Carbon\Carbon::parse($room->end_time)->format('H:i') }}
+                                                    </span>
+                                                    <span>
+                                                        {{ \Carbon\Carbon::parse($room->start_date)->format('d M Y') }}
+                                                    </span>
+                                                </div>
                                             </div>
+                                            <span class="my-auto font-bold text-xl">
+                                                {{ $room->user->organization->name }}
+                                            </span>
                                         </div>
-                                        <span class="my-auto font-bold text-xl">
-                                            HMTI
-                                        </span>
                                     </div>
-                                </div>
-                                <div class="flex flex-col gap-10">
-                                    <div class="flex justify-between bg-yellow-100 rounded-md py-2 px-4">
-                                        <div class="flex gap-2">
-                                            <span class="h-12 w-1.5 border border-black bg-black rounded-sm"></span>
-                                            <div class="flex flex-col">
-                                                <span>07.00 AM - 08.00</span>
-                                                <span>25 Juni 2023</span>
-                                            </div>
-                                        </div>
-                                        <span class="my-auto font-bold text-xl">
-                                            HMTI
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="flex flex-col gap-10">
-                                    <div class="flex justify-between bg-yellow-100 rounded-md py-2 px-4">
-                                        <div class="flex gap-2">
-                                            <span class="h-12 w-1.5 border border-black bg-black rounded-sm"></span>
-                                            <div class="flex flex-col">
-                                                <span>07.00 AM - 08.00</span>
-                                                <span>25 Juni 2023</span>
-                                            </div>
-                                        </div>
-                                        <span class="my-auto font-bold text-xl">
-                                            HMTI
-                                        </span>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

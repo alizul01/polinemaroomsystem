@@ -37,9 +37,8 @@ Route::get('/proses', function () {
 
 // admin
 Route::group(['middleware' => ['auth', 'admin']], function () {
-  Route::get('/admin', function () {
-    return response('Admin', 200);
-  });
+  Route::get('/admin', [RoomReservationController::class, 'adminReservationIndex'])->name('admin.pages.approval');
+  Route::put('/admin', [RoomReservationController::class, 'approve'])->name('admin.reservation.approve');
 });
 
 Route::group(['middleware' => ['auth']], function () {
