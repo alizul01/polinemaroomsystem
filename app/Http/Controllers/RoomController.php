@@ -38,7 +38,8 @@ class RoomController extends Controller
    */
   public function show(Room $room)
   {
-    return view('user.detail-ruangan', compact('room'));
+    // redirect to detail-ruangan view
+    // return view('user.detail-ruangan', compact('room'));
   }
 
   /**
