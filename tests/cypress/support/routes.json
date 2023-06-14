@@ -1,4 +1,53 @@
 {
+  "debugbar.openhandler": {
+    "name": "debugbar.openhandler",
+    "domain": null,
+    "action": "Barryvdh\\Debugbar\\Controllers\\OpenHandlerController@handle",
+    "uri": "_debugbar/open",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "debugbar.clockwork": {
+    "name": "debugbar.clockwork",
+    "domain": null,
+    "action": "Barryvdh\\Debugbar\\Controllers\\OpenHandlerController@clockwork",
+    "uri": "_debugbar/clockwork/{id}",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "debugbar.assets.css": {
+    "name": "debugbar.assets.css",
+    "domain": null,
+    "action": "Barryvdh\\Debugbar\\Controllers\\AssetController@css",
+    "uri": "_debugbar/assets/stylesheets",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "debugbar.assets.js": {
+    "name": "debugbar.assets.js",
+    "domain": null,
+    "action": "Barryvdh\\Debugbar\\Controllers\\AssetController@js",
+    "uri": "_debugbar/assets/javascript",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "debugbar.cache.delete": {
+    "name": "debugbar.cache.delete",
+    "domain": null,
+    "action": "Barryvdh\\Debugbar\\Controllers\\CacheController@delete",
+    "uri": "_debugbar/cache/{key}/{tags?}",
+    "method": [
+      "DELETE"
+    ]
+  },
   "cypress.factory": {
     "name": "cypress.factory",
     "domain": null,
@@ -113,88 +162,184 @@
   "": {
     "name": null,
     "domain": null,
-    "action": "App\\Http\\Controllers\\AuthController@register",
-    "uri": "register",
-    "method": [
-      "POST"
-    ]
-  },
-  "approval.index": {
-    "name": "approval.index",
-    "domain": null,
-    "action": "App\\Http\\Controllers\\ApprovalController@index",
-    "uri": "approval",
+    "action": "Closure",
+    "uri": "tes",
     "method": [
       "GET",
       "HEAD"
     ]
   },
-  "approval.create": {
-    "name": "approval.create",
+  "admin.pages.approval": {
+    "name": "admin.pages.approval",
     "domain": null,
-    "action": "App\\Http\\Controllers\\ApprovalController@create",
-    "uri": "approval/create",
+    "action": "App\\Http\\Controllers\\RoomReservationController@adminReservationIndex",
+    "uri": "admin",
     "method": [
       "GET",
       "HEAD"
     ]
   },
-  "approval.store": {
-    "name": "approval.store",
+  "admin.reservation.approve": {
+    "name": "admin.reservation.approve",
     "domain": null,
-    "action": "App\\Http\\Controllers\\ApprovalController@store",
-    "uri": "approval",
+    "action": "App\\Http\\Controllers\\RoomReservationController@approve",
+    "uri": "admin",
     "method": [
-      "POST"
-    ]
-  },
-  "approval.show": {
-    "name": "approval.show",
-    "domain": null,
-    "action": "App\\Http\\Controllers\\ApprovalController@show",
-    "uri": "approval/{id}",
-    "method": [
-      "GET",
-      "HEAD"
-    ]
-  },
-  "approval.edit": {
-    "name": "approval.edit",
-    "domain": null,
-    "action": "App\\Http\\Controllers\\ApprovalController@edit",
-    "uri": "approval/{id}/edit",
-    "method": [
-      "GET",
-      "HEAD"
-    ]
-  },
-  "approval.update": {
-    "name": "approval.update",
-    "domain": null,
-    "action": "App\\Http\\Controllers\\ApprovalController@update",
-    "uri": "approval/{id}",
-    "method": [
-      "PUT",
-      "PATCH"
-    ]
-  },
-  "approval.destroy": {
-    "name": "approval.destroy",
-    "domain": null,
-    "action": "App\\Http\\Controllers\\ApprovalController@destroy",
-    "uri": "approval/{id}",
-    "method": [
-      "DELETE"
+      "PUT"
     ]
   },
   "index": {
     "name": "index",
     "domain": null,
-    "action": "Closure",
+    "action": "App\\Http\\Controllers\\DashboardController@index",
     "uri": "/",
     "method": [
       "GET",
       "HEAD"
+    ]
+  },
+  "room.index": {
+    "name": "room.index",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomController@index",
+    "uri": "room",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "room.create": {
+    "name": "room.create",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomController@create",
+    "uri": "room/create",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "room.store": {
+    "name": "room.store",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomController@store",
+    "uri": "room",
+    "method": [
+      "POST"
+    ]
+  },
+  "room.show": {
+    "name": "room.show",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomController@show",
+    "uri": "room/{room}",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "room.edit": {
+    "name": "room.edit",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomController@edit",
+    "uri": "room/{room}/edit",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "room.update": {
+    "name": "room.update",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomController@update",
+    "uri": "room/{room}",
+    "method": [
+      "PUT",
+      "PATCH"
+    ]
+  },
+  "room.destroy": {
+    "name": "room.destroy",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomController@destroy",
+    "uri": "room/{room}",
+    "method": [
+      "DELETE"
+    ]
+  },
+  "reservation.index": {
+    "name": "reservation.index",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomReservationController@showStep1",
+    "uri": "reservation",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "reservation.store": {
+    "name": "reservation.store",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomReservationController@postStep1",
+    "uri": "reservation",
+    "method": [
+      "POST"
+    ]
+  },
+  "reservation2.index": {
+    "name": "reservation2.index",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomReservationController@showStep2",
+    "uri": "reservation-2",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "reservation2.store": {
+    "name": "reservation2.store",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomReservationController@postStep2",
+    "uri": "reservation-2",
+    "method": [
+      "POST"
+    ]
+  },
+  "reservation.final": {
+    "name": "reservation.final",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomReservationController@showFinal",
+    "uri": "reservation-final",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "reservation.final.store": {
+    "name": "reservation.final.store",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomReservationController@finish",
+    "uri": "reservation-final",
+    "method": [
+      "POST"
+    ]
+  },
+  "reservation.status": {
+    "name": "reservation.status",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomReservationController@reservationStatus",
+    "uri": "reservation-status",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "user.reservation.generate": {
+    "name": "user.reservation.generate",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\ReportingController@createReportingPDF",
+    "uri": "report-pdf",
+    "method": [
+      "POST"
     ]
   },
   "logout": {
