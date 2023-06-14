@@ -16,8 +16,16 @@ class DashboardController extends Controller
 
       $status = RoomReservation::where('user_id', auth()->user()->id)->get();
       $roomcount = Room::count();
-      // log get 5 newest room reservation from all user
+      // get ruangan yang kosong dan yang tidak
+      $roomsData = [
+        'available' => Room::whereDoesntHave('roomReservation', function ($query) {
+          $query->where('status', 'Approved');
+        })->count(),
+        'unavailable' => Room::whereHas('roomReservation', function ($query) {
+          $query->where('status', 'Approved');
+        })->count()
+      ];
       $log = RoomReservation::orderBy('created_at', 'desc')->take(5)->get();
-      return view('user.dashboard', compact('rooms', 'roomcount', 'status', 'log'));
+      return view('user.dashboard', compact('rooms', 'roomcount', 'status', 'log', 'roomsData'));
     }
 }
