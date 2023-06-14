@@ -7,13 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Organization extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $guarded = ['id'];
-    protected $with = ['users'];
+  protected $guarded = ['id'];
 
-    public function users()
-    {
-        return $this->belongsTo(User::class);
-    }
+  public function users()
+  {
+    return $this->hasMany(User::class);
+  }
 }
