@@ -100,20 +100,23 @@ class RoomReservationController extends Controller
     return view('user.reservation-status', compact('reservations'));
   }
 
-  public function approve(Request $request, RoomReservation $reservation, User $user)
+  public function approve(Request $request, User $user)
   {
+    $reservation = RoomReservation::findOrFail($request->reservation_id);
     $role = auth()->user()->role;
     if ($role == 'kajur') {
-      $reservation->approved_by_kajur = true;
-    } else if ($role == 'bem' || $role == 'hmti') {
-      $reservation->approved_by_himpunan = true;
+      $reservation->approved_by_kepala_jurusan = true;
+    } else if ($role == 'bem') {
+      $reservation->approved_by_bem = true;
+    } else if ($role == 'hmti') {
+      $reservation->approved_by_hmti = true;
     } else {
       toast()->error('Reservasi gagal disetujui');
       return redirect()->route('admin.reservation.index');
     }
     $reservation->save();
     toast()->success('Reservasi berhasil disetujui');
-    return redirect()->route('admin.reservation.index');
+    return redirect()->route('admin.pages.approval');
   }
 
   public function adminReservationIndex()
