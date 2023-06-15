@@ -43,6 +43,14 @@
                         <span>Proses</span>
                     </a>
                 </li>
+                @if (Auth::user()->isAdmin())
+                    <li>
+                        <a href="{{ route('admin.pages.approval') }}"
+                            class="no-underline {{ request()->is('admin*') ? 'text-white' : 'text-white/40 hover:text-white' }}">
+                            <span>Approval</span>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </div>
         <hr>

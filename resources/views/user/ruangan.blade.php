@@ -7,23 +7,20 @@
                 <h1 class="text-xl font-medium">Ruangan</h1>
                 <div>
                     @include('user.partials.components.dropdown')
-                    <button type="button"
-                        class="text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm px-5 py-3">
-                        ...
-                    </button>
                 </div>
             </div>
             <div class="grid grid-cols-3 gap-4">
                 @foreach ($rooms as $room)
-                    <x-dashboard.card-room :id="$room->id" status="kosong" :name="$room->name" :image="$room->image" :capacity="$room->capacity" :code="$room->code" :room="$room" :floor="$room->floor" />
+                    <x-dashboard.card-room :id="$room->id" status="kosong" :name="$room->name" :image="$room->image"
+                        :capacity="$room->capacity" :code="$room->code" :room="$room" :floor="$room->floor" />
                 @endforeach
             </div>
             {{ $rooms->links('pagination::tailwind') }}
         </section>
         <aside class="flex flex-col gap-6 w-1/3">
-            <button class="h-[100px] p-6 bg-gray-800 rounded-lg hover:bg-gray-900">
+            <a href="/reservation" class="h-[100px] p-6 bg-gray-800 rounded-lg hover:bg-gray-900">
                 <span class="text-2xl font-semibold text-white">Buat Peminjaman <i class="bx bx-right-arrow-alt"></i></span>
-            </button>
+            </a>
             <section class="flex flex-col gap-4 p-6 bg-white border border-gray-200 rounded-lg shadow-md">
                 <form class="flex">
                     <label for="search" class="sr-only">Search</label>

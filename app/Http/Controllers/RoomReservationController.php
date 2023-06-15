@@ -20,17 +20,14 @@ class RoomReservationController extends Controller
 
   public function postStep1(Request $request)
   {
-    $reservationData['user_id'] = auth()->user()->id;
-    $reservationData['user_id'] = auth()->user()->nomor_induk;
     $validatedData = $request->validate([
-      'organization_id' => 'required|exists:organizations,id',
-      'phonenumber' => 'required',
       'start_date' => 'required',
       'start_time' => 'required',
       'end_time' => 'required|after:start_time',
       'participant' => 'required',
       'keterangan' => 'required',
     ]);
+    $validatedData['user_id'] = auth()->user()->id;
 
     session()->put('step1', $validatedData);
     return redirect()->route('reservation2.index');
@@ -38,16 +35,16 @@ class RoomReservationController extends Controller
 
   public function showStep2(Request $request)
   {
+    if ($request->has('floor')) {
+      $rooms = Room::where('floor', $request->floor)->paginate(6)->withQueryString();
+    } else {
+      $rooms = Room::paginate(6);
+    }
     $step = 2;
     if (!$request->session()->has('step1')) {
       return redirect()->route('form.step1');
     }
 
-    if ($request->has('floor')) {
-      $rooms = Room::where('floor', $request->floor)->get();
-    } else {
-      $rooms = Room::all();
-    }
     return view('user.partials.components.reservasi-step2', compact('step', 'rooms'));
   }
 
@@ -100,24 +97,28 @@ class RoomReservationController extends Controller
     return view('user.reservation-status', compact('reservations'));
   }
 
-  public function approve(Request $request, User $user)
+  public function approve(Request $request)
   {
     $reservation = RoomReservation::findOrFail($request->reservation_id);
     $role = auth()->user()->role;
+
     if ($role == 'kajur') {
-      $reservation->approved_by_kepala_jurusan = true;
-    } else if ($role == 'bem') {
-      $reservation->approved_by_bem = true;
-    } else if ($role == 'hmti') {
-      $reservation->approved_by_hmti = true;
+      $reservation->approved_by_kepala_jurusan = !$reservation->approved_by_kepala_jurusan;
+    } elseif ($role == 'bem') {
+      $reservation->approved_by_bem = !$reservation->approved_by_bem;
+    } elseif ($role == 'hmti') {
+      $reservation->approved_by_hmti = !$reservation->approved_by_hmti;
     } else {
       toast()->error('Reservasi gagal disetujui');
       return redirect()->route('admin.reservation.index');
     }
+
     $reservation->save();
+
     toast()->success('Reservasi berhasil disetujui');
     return redirect()->route('admin.pages.approval');
   }
+
 
   public function adminReservationIndex()
   {

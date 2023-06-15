@@ -7,15 +7,12 @@
                 <h1 class="text-xl font-medium">Ruangan</h1>
                 <div>
                     @include('user.partials.components.dropdown')
-                    <button type="button"
-                        class="text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm px-5 py-3">
-                        ...
-                    </button>
                 </div>
             </div>
             <div class="grid grid-cols-3 gap-4">
                 @foreach ($rooms as $room)
-                    <x-dashboard.card-room :id="$room->id" status="kosong" :name="$room->name" :image="$room->image" :capacity="$room->capacity" :code="$room->code" :room="$room" :floor="$room->floor" />
+                    <x-dashboard.card-room :id="$room->id" status="kosong" :isreservation="false" :name="$room->name"
+                        :image="$room->image" :capacity="$room->capacity" :code="$room->code" :room="$room" :floor="$room->floor" />
                 @endforeach
             </div>
             {{ $rooms->links('pagination::tailwind') }}

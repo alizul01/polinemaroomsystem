@@ -18,15 +18,15 @@ class ProcessBody extends Component
   public $dateUse;
   public $status;
 
-  public $isStep1Approved;
+  public $issteponeapproved;
   public $isStep2Approved;
   public $isStep3Approved;
   public $isStep4Approved;
 
-  public $reason1;
-  public $reason2;
-  public $reason3;
-  public $reason4;
+  public $reasonone;
+  public $reasontwo;
+  public $reasonthree;
+  public $reasonfour;
 
   public function __construct(
     $id,
@@ -35,14 +35,14 @@ class ProcessBody extends Component
     $room,
     $dateUse,
     $status,
-    $isStep1Approved = "",
+    $issteponeapproved = "",
     $isStep2Approved = "",
     $isStep3Approved = "",
     $isStep4Approved = "",
-    $reason1 = "Dalam Proses",
-    $reason2 = "Dalam Proses",
-    $reason3 = "Dalam Proses",
-    $reason4 = "Dalam Proses"
+    $reasonone = "Dalam Proses",
+    $reasontwo = "Dalam Proses",
+    $reasonthree = "Dalam Proses",
+    $reasonfour = "Dalam Proses"
   ) {
     $this->id = $id;
     $this->no = $no;
@@ -51,15 +51,15 @@ class ProcessBody extends Component
     $this->dateUse = $dateUse;
     $this->status = $status;
 
-    $this->isStep1Approved = $isStep1Approved;
+    $this->issteponeapproved = $issteponeapproved;
     $this->isStep2Approved = $isStep2Approved;
     $this->isStep3Approved = $isStep3Approved;
     $this->isStep4Approved = $isStep4Approved;
 
-    $this->reason1 = $reason1;
-    $this->reason2 = $reason2;
-    $this->reason3 = $reason3;
-    $this->reason4 = $reason4;
+    $this->reasonone = $reasonone;
+    $this->reasontwo = $reasontwo;
+    $this->reasonthree = $reasonthree;
+    $this->reasonfour = $reasonfour;
   }
 
   /**

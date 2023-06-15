@@ -22,64 +22,23 @@
                     </div>
                 </form>
                 @include('user.partials.components.dropdown')
-                <button type="button"
-                    class="text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm px-5 py-3">
-                    ...
-                </button>
             </div>
         </div>
         <form method="POST" action="{{ route('reservation2.store') }}">
             @csrf
-            <div class="grid grid-cols-3 gap-4 ">
+            <div class="grid grid-cols-3 gap-4">
                 @foreach ($rooms as $room)
-                    <x-dashboard.card-room status="kosong" :name="$room->name" :image="$room->image" :capacity="$room->capacity" :room="$room"
-                        :code="$room->code" :floor="$room->floor" :id="$room->id" />
+                    <x-dashboard.card-room :id="$room->id" status="kosong" :name="$room->name" :image="$room->image"
+                        :capacity="$room->capacity" :isreservation="true"  :code="$room->code" :room="$room" :floor="$room->floor" />
                 @endforeach
-                <input type="text" id="room_id" hidden name="room_id">
             </div>
-            <button type="submit" class="bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm px-10 text-white py-3 mt-10 ">
+            {{ $rooms->links('pagination::tailwind') }}
+            <input type="text" id="room_id" hidden name="room_id">
+            </div>
+            <button type="submit"
+                class="bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm px-10 text-white py-3 mt-10 ">
                 Pilih
             </button>
         </form>
     </section>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let bookingButtons = document.querySelectorAll('.bookBtn');
-            let selectedButton = null;
-
-            bookingButtons.forEach((button) => {
-                button.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const input = document.getElementById('room_id');
-
-                    if (button === selectedButton) {
-                        // The button was already selected. Deselect it and re-enable all buttons.
-                        button.classList.remove('bg-green-500');
-                        button.classList.add('bg-gray-800');
-                        bookingButtons.forEach((btn) => {
-                            btn.disabled = false;
-                            btn.classList.remove('bg-gray-400');
-                            btn.classList.add('bg-gray-800');
-                        });
-                        selectedButton = null;
-                        input.value = '';
-                    } else {
-                        // A new button was selected. Disable all other buttons.
-                        bookingButtons.forEach((btn) => {
-                            btn.disabled = true;
-                            btn.classList.remove('bg-green-500');
-                            btn.classList.add('bg-gray-400');
-                        });
-                        // Select the clicked button.
-                        button.disabled = false;
-                        button.classList.remove('bg-gray-400');
-                        button.classList.add('bg-green-500');
-                        selectedButton = button;
-                        input.value = button.id.replace('bookBtn', '');
-                    }
-                });
-            });
-        });
-    </script>
 @endsection

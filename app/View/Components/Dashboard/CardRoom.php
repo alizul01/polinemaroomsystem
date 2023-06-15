@@ -18,8 +18,9 @@ class CardRoom extends Component
     public $floor;
     public $image;
     public $status;
+    public $isreservation;
   public $room;
-  public function __construct($name, $code, $capacity, $floor, $image, $status, $id, $room)
+  public function __construct($name, $code, $capacity, $floor, $image, $status, $id, $room, $isreservation)
   {
     $this->name = $name;
     $this->code = $code;
@@ -29,6 +30,7 @@ class CardRoom extends Component
     $this->status = $status;
     $this->id = $id;
     $this->room = $room;
+    $this->isreservation = $isreservation;
   }
 
   /**

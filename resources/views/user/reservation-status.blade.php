@@ -1,77 +1,45 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-</head>
-
-<body>
-
-    <h2 class="text-center mt-2">Daftar Status Proses Reservasi</h2>
-    <div class="container-xxl p-3">
-        <table class="table table-bordered">
-            <thead>
-                <th scope=col>#</th>
-                <th scope="col">Nama Peminjam</th>
-                <th scope="col">Ruang</th>
-                <th scope="col">Status Himpunan</th>
-                <th scope="col">Status BEM</th>
-                <th scope="col">Status Ketua Jurusan</th>
-                <th scope="col">Status Reservasi</th>
-                <th scope="col">Aksi</th>
-            </thead>
-            <tbody>
-                @foreach ($reservations as $item)
-                    <tr>
-                        <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $item->user->name }}</td>
-                        <td>{{ $item->room->name }}</td>
-                        <td>
-                            <span class="badge text-bg-{{ $item->approved_by_himpunan == 1 ? 'success' : 'warning' }}">
-                                {{ $item->approved_by_himpunan == 1 ? 'Disetujui' : 'pending' }}
-                            </span>
-                        </td>
-                        <td>
-                            <span class="badge text-bg-{{ $item->approved_by_bem == 1 ? 'success' : 'warning' }}">
-                                {{ $item->approved_by_bem == 1 ? 'Disetujui' : 'Pending' }}
-                            </span>
-                        </td>
-                        <td>
-                            <span
-                                class="badge text-bg-{{ $item->approved_by_kepala_jurusan == 1 ? 'success' : 'warning' }}">
-                                {{ $item->approved_by_kepala_jurusan == 1 ? 'Disetujui' : 'Pending' }}
-                            </span>
-                        </td>
-                        <td>
-                            @if ($item->status == 'Approved')
-                                <span class="badge bg-success">Approved</span>
-                            @elseif ($item->status == 'Rejected')
-                                <span class="badge bg-danger">Rejected</span>
-                            @else
-                                <span class="badge bg-warning">Pending</span>
-                            @endif
-                        </td>
-                        {{-- generate surat --}}
-                        <td>
-                            <form action="{{ route('user.reservation.generate') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="reservation_id" value="{{ $item->id }}">
-                                <button type="submit" class="btn btn-primary" {{ $item->status != 'Approved' ? 'disabled' : '' }}>Generate Surat</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
-    </script>
-</body>
-
-</html>
+@extends('layout.master')
+@section('master')
+    @include('user.partials.navbar')
+    <main class="flex gap-6 -mt-14 mb-10 px-10">
+        <section class="flex flex-col grow gap-4 p-6 bg-white  border-2 rounded-lg shadow-md">
+            <div class="flex flex-col gap-3 justify-center">
+                <h1 class="text-xl font-medium">Proses Peminjaman</h1>
+                <span class="text-gray-500 font-light text-sm">Lihat proses peminjaman mu di halaman ini</span>
+            </div>
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <table class="w-full text-sm text-left">
+                    <thead class="text-sm text-center text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                No
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Tanggal Diajukan
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Ruangan
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Tanggal Dipakai
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Status
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Aksi
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center font-medium text-gray-900">
+                        @foreach ($reservations as $item)
+                            <x-table.process-body :id="$item->id" :no="$loop->iteration" dateFiled="23 Maret 2023"
+                                room="LPY 3" :date-use="1" :status="$item->status" :issteponeapproved="$item->approved_by_himpunan"
+                                :reasonone="$item->approved_by_himpunan_at" />
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+@endsection

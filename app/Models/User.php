@@ -47,4 +47,10 @@ class User extends Authenticatable
   {
     return $this->hasMany(RoomReservation::class);
   }
+
+  public function isAdmin()
+  {
+    $adminRoles = ['admin', 'bem', 'himpunan', 'kajur'];
+    return in_array($this->role, $adminRoles);
+  }
 }

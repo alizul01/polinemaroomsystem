@@ -8,19 +8,7 @@ use App\Http\Controllers\{
   RoomController,
   RoomReservationController
 };
-use App\Models\RoomReservation;
 use Illuminate\Support\Facades\Route;
-
-Route::view('/ruangan/detail', 'user.ruangan-detail', [
-  'active' => 'ruangan',
-  'isHome' => false,
-  'status' => 'terpakai'
-]);
-
-Route::view('/proses', 'user.proses', [
-  'active' => 'process',
-  'isHome' => false
-]);
 
 Route::group(['middleware' => ['auth']], function () {
   Route::get('/', [DashboardController::class, 'index'])->name('index');
@@ -39,9 +27,9 @@ Route::group(['middleware' => ['auth']], function () {
   Route::post('/report-pdf', [ReportingController::class, 'createReportingPDF'])->name('user.reservation.generate');
   Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
-  Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
-    Route::get('/', [RoomReservationController::class, 'adminReservationIndex'])->name('pages.approval');
-    Route::put('/', [RoomReservationController::class, 'approve'])->name('reservation.approve');
+  Route::group(['prefix' => 'approval', 'middleware' => 'admin'], function () {
+    Route::get('/', [RoomReservationController::class, 'adminReservationIndex'])->name('admin.pages.approval');
+    Route::put('/', [RoomReservationController::class, 'approve'])->name('admin.reservation.approve');
   });
 });
 
