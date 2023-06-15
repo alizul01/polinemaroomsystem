@@ -1,73 +1,45 @@
 @php
-    $colorState1 = 'bg-gray-500';
-    $colorState2 = 'bg-gray-500';
-    $colorState3 = 'bg-gray-500';
-    $colorState4 = 'bg-gray-500';
-    switch ($issteponeapproved) {
-        case 'yes':
-            $colorState1 = 'bg-green-500';
-            break;
-        case 'no':
-            $colorState1 = 'bg-red-500';
-            break;
-        default:
-            $colorState1 = 'bg-yellow-500';
-            break;
+    function getColorState($approvalStatus)
+    {
+        switch ($approvalStatus) {
+            case true:
+                return 'bg-green-500';
+            case null:
+                return 'bg-yellow-500';
+            case false:
+                return 'bg-red-500';
+            default:
+                return 'bg-yellow-500';
+        }
     }
-    switch ($isStep2Approved) {
-        case 'yes':
-            $colorState2 = 'bg-green-500';
-            break;
-        case 'no':
-            $colorState2 = 'bg-red-500';
-            break;
-        default:
-            $colorState2 = 'bg-gray-500';
-            break;
-    }
-    switch ($isStep3Approved) {
-        case 'yes':
-            $colorState3 = 'bg-green-500';
-            break;
-        case 'no':
-            $colorState3 = 'bg-red-500';
-            break;
-        default:
-            $colorState3 = 'bg-gray-500';
-            break;
-    }
-    switch ($isStep4Approved) {
-        case 'yes':
-            $colorState4 = 'bg-green-500';
-            break;
-        case 'no':
-            $colorState4 = 'bg-red-500';
-            break;
-        default:
-            $colorState4 = 'bg-gray-500';
-            break;
-    }
+
+    $colorState1 = getColorState($isStepOneApproved);
+    $colorState2 = getColorState($isStepTwoApproved);
+    $colorState3 = getColorState($isStepThreeApproved);
+    $colorState4 = getColorState($isStepFourApproved);
 @endphp
+
+
 <tr class="bg-white border-b">
     <td class="px-6 py-4">
         {{ $no }}
     </td>
     <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-        {{ $dateFiled }}
+        {{ \Carbon\Carbon::parse($dateFiled)->format('d F Y') }}
     </th>
     <td class="px-6 py-4">
-        {{ $room }}
+        {{ $room->name }}
     </td>
     <td class="px-6 py-4">
-        {{ $dateUse }}
+        {{ \Carbon\Carbon::parse($dateUse)->format('d F Y') }}
     </td>
     <td class="px-6 py-4">
-        @if ($status == 'Proses' || $status == 'proses')
+        @if ($status == 'Pending' || $status == 'Pending')
             <button type="button" disabled
                 class="focus:outline-none bg-yellow-400 text-white  font-medium rounded-lg text-sm p-2">
                 {{ $status }}
             </button>
-        @elseif ($status == 'Sukses' || $status == 'sukses')
+        @elseif ($status == 'Approved' || $status == 'Approved')
             <button type="button" disabled
                 class="focus:outline-none bg-green-500 text-white  font-medium rounded-lg text-sm p-2">
                 {{ $status }}
@@ -124,7 +96,9 @@
                                         </h3>
                                     </div>
                                     <div class="px-3 py-2">
-                                        <p class="font-light ">{{ $reasonone }}</p>
+                                        <p class="font-light ">
+                                            {{ $approvedAtOne ? \Carbon\Carbon::parse($approvedAtOne)->format('d F Y') : 'On Progress' }}
+                                        </p>
                                     </div>
                                     <div data-popper-arrow></div>
                                 </div>
@@ -152,7 +126,7 @@
                                         </h3>
                                     </div>
                                     <div class="px-3 py-2">
-                                        <p class="font-light">{{ $reasontwo }}</p>
+                                        {{ $approvedAtTwo ? \Carbon\Carbon::parse($approvedAtTwo)->format('d F Y') : 'On Progress' }}
                                     </div>
                                     <div data-popper-arrow></div>
                                 </div>
@@ -180,7 +154,7 @@
                                         </h3>
                                     </div>
                                     <div class="px-3 py-2">
-                                        <p class="font-light">{{ $reasonthree }}</p>
+                                        {{ $approvedAtThree ? \Carbon\Carbon::parse($approvedAtThree)->format('d F Y') : 'On Progress' }}
                                     </div>
                                     <div data-popper-arrow></div>
                                 </div>
@@ -191,25 +165,23 @@
                         <div class="flex items-center">
                             <div
                                 class="z-10 text-white flex items-center justify-center w-12 h-12 {{ $colorState4 }} rounded-full ring-0 ring-white sm:ring-8 shrink-0">
-                                4
+                                @if ($status)
+                                    <form action="{{ route('user.reservation.generate') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $id }}">
+                                        <button type="submit">
+                                            <i class="bx bx-cloud-download text-2xl"></i>
+                                        </button>
+                                    </form>
+                                @else
+                                    <i class="bx bx-cloud-download text-2xl"></i>
+                                @endif
                             </div>
                         </div>
                         <div class="mt-3">
                             <h3 class="italic text-gray-900">
-                                <div data-popover-target="popover-4-{{ $id }}" data-popover-placement="right"
-                                    class="cursor-default">
-                                    Tahap 4 <i class="bx bx-question-mark rounded-full border border-black"></i>
-                                </div>
-                                <div data-popover id="popover-4-{{ $id }}" role="tooltip"
-                                    class="absolute z-20 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0">
-                                    <div class="px-3 py-2 {{ $colorState4 }} border-b border-gray-200 rounded-t-lg">
-                                        <h3 class="font-semibold text-gray-50">Birokrasi Tahap Empat
-                                        </h3>
-                                    </div>
-                                    <div class="px-3 py-2">
-                                        <p class="font-light">{{ $reasonfour }}</p>
-                                    </div>
-                                    <div data-popper-arrow></div>
+                                <div class="cursor-default">
+                                    Download
                                 </div>
                             </h3>
                         </div>

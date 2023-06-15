@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('room_reservations', function (Blueprint $table) {
-            $table->integer('approved_by_himpunan')->nullable()->default(0);
+            $table->integer('approved_by_himpunan')->nullable();
             $table->dateTime('approved_by_himpunan_at')->nullable();
-            $table->integer('approved_by_bem')->nullable()->default(0);
+            $table->integer('approved_by_bem')->nullable();
             $table->dateTime('approved_by_bem_at')->nullable();
-            $table->integer('approved_by_kepala_jurusan')->nullable()->default(0);
+            $table->integer('approved_by_kepala_jurusan')->nullable();
             $table->dateTime('approved_by_kepala_jurusan_at')->nullable();
         });
     }

@@ -16,7 +16,7 @@ class AdminMiddleware
    */
   public function handle(Request $request, Closure $next): Response
   {
-    $adminRoles = ['admin', 'bem', 'himpunan', 'kajur'];
+    $adminRoles = ['admin', 'bem', 'hmti', 'kajur'];
     if (in_array(auth()->user()->role, $adminRoles)) {
       return $next($request);
     }

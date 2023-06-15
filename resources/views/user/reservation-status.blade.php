@@ -33,9 +33,11 @@
                     </thead>
                     <tbody class="text-center font-medium text-gray-900">
                         @foreach ($reservations as $item)
-                            <x-table.process-body :id="$item->id" :no="$loop->iteration" dateFiled="23 Maret 2023"
-                                room="LPY 3" :date-use="1" :status="$item->status" :issteponeapproved="$item->approved_by_himpunan"
-                                :reasonone="$item->approved_by_himpunan_at" />
+                            <x-table.process-body :id="$item->id" :no="$loop->iteration" :dateFiled="$item->created_at"
+                                :room="$item->room" :dateUse="$item->start_date" :status="$item->status" :isStepOneApproved="$item->approved_by_himpunan" :approvedAtOne="$item->approved_by_himpunan_at"
+                                :isStepTwoApproved="$item->approved_by_bem" :approvedAtTwo="$item->approved_by_bem_at" :isStepThreeApproved="$item->approved_by_kepala_jurusan" :approvedAtThree="$item->approved_by_kepala_jurusan_at" :isStepFourApproved="$item->status"
+                                :roomdownload="$item"
+                                :reasonFour="$item->approved_by_kepala_jurusan_at" />
                         @endforeach
                     </tbody>
                 </table>

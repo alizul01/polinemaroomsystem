@@ -2,15 +2,13 @@
 
 namespace App\View\Components\Table;
 
+use Carbon\Carbon;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class ProcessBody extends Component
 {
-  /**
-   * Create a new component instance.
-   */
   public $id;
   public $no;
   public $dateFiled;
@@ -18,15 +16,15 @@ class ProcessBody extends Component
   public $dateUse;
   public $status;
 
-  public $issteponeapproved;
-  public $isStep2Approved;
-  public $isStep3Approved;
-  public $isStep4Approved;
+  public $isStepOneApproved;
+  public $isStepTwoApproved;
+  public $isStepThreeApproved;
+  public $isStepFourApproved;
 
-  public $reasonone;
-  public $reasontwo;
-  public $reasonthree;
-  public $reasonfour;
+  public $approvedAtOne;
+  public $approvedAtTwo;
+  public $approvedAtThree;
+  public $reasonFour;
 
   public function __construct(
     $id,
@@ -35,14 +33,14 @@ class ProcessBody extends Component
     $room,
     $dateUse,
     $status,
-    $issteponeapproved = "",
-    $isStep2Approved = "",
-    $isStep3Approved = "",
-    $isStep4Approved = "",
-    $reasonone = "Dalam Proses",
-    $reasontwo = "Dalam Proses",
-    $reasonthree = "Dalam Proses",
-    $reasonfour = "Dalam Proses"
+    $isStepOneApproved,
+    $isStepTwoApproved,
+    $isStepThreeApproved,
+    $isStepFourApproved,
+    $approvedAtOne,
+    $approvedAtTwo,
+    $approvedAtThree,
+    $reasonFour
   ) {
     $this->id = $id;
     $this->no = $no;
@@ -51,20 +49,28 @@ class ProcessBody extends Component
     $this->dateUse = $dateUse;
     $this->status = $status;
 
-    $this->issteponeapproved = $issteponeapproved;
-    $this->isStep2Approved = $isStep2Approved;
-    $this->isStep3Approved = $isStep3Approved;
-    $this->isStep4Approved = $isStep4Approved;
+    $this->isStepOneApproved = $isStepOneApproved;
+    $this->isStepTwoApproved = $isStepTwoApproved;
+    $this->isStepThreeApproved = $isStepThreeApproved;
+    $this->isStepFourApproved = $isStepFourApproved;
 
-    $this->reasonone = $reasonone;
-    $this->reasontwo = $reasontwo;
-    $this->reasonthree = $reasonthree;
-    $this->reasonfour = $reasonfour;
+    $this->approvedAtOne = $approvedAtOne;
+    $this->approvedAtTwo = $approvedAtTwo;
+    $this->approvedAtThree = $approvedAtThree;
+    $this->reasonFour = $reasonFour;
   }
 
-  /**
-   * Get the view / contents that represent the component.
-   */
+  public function getColorState($approvalStatus): string
+  {
+    return match ($approvalStatus) {
+      true => 'bg-green-500',
+      null => 'bg-yellow-500',
+      false => 'bg-red-500',
+      default => 'bg-yellow-500',
+    };
+  }
+
+
   public function render(): View|Closure|string
   {
     return view('components.table.process-body');

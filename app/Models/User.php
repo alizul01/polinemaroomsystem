@@ -50,7 +50,7 @@ class User extends Authenticatable
 
   public function isAdmin()
   {
-    $adminRoles = ['admin', 'bem', 'himpunan', 'kajur'];
+    $adminRoles = ['admin', 'bem', 'hmti', 'kajur'];
     return in_array($this->role, $adminRoles);
   }
 }

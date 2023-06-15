@@ -104,10 +104,13 @@ class RoomReservationController extends Controller
 
     if ($role == 'kajur') {
       $reservation->approved_by_kepala_jurusan = !$reservation->approved_by_kepala_jurusan;
+      $reservation->approved_by_kepala_jurusan_at = now();
     } elseif ($role == 'bem') {
       $reservation->approved_by_bem = !$reservation->approved_by_bem;
+      $reservation->approved_by_bem_at = now();
     } elseif ($role == 'hmti') {
-      $reservation->approved_by_hmti = !$reservation->approved_by_hmti;
+      $reservation->approved_by_himpunan = !$reservation->approved_by_himpunan;
+      $reservation->approved_by_himpunan_at = now();
     } else {
       toast()->error('Reservasi gagal disetujui');
       return redirect()->route('admin.reservation.index');
