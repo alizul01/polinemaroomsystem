@@ -10,6 +10,14 @@ use App\Http\Controllers\{
 };
 use Illuminate\Support\Facades\Route;
 
+Route::get('/admin/home', function () {
+  return view('admin.pages.home');
+})->name('tes');
+
+Route::get('admin/peminjaman', function () {
+  return view('admin.pages.peminjaman');
+})->name('tes');
+
 Route::group(['middleware' => ['auth']], function () {
   Route::get('/', [DashboardController::class, 'index'])->name('index');
   Route::resource('room', RoomController::class);

@@ -1,4 +1,4 @@
-<button id="lantaiDropdown" data-dropdown-toggle="dropdown"
+<button id="lantaiDropdown" data-dropdown-toggle="dropdown1"
   class="text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm px-4 py-3 text-center inline-flex items-center"
   type="button">Lantai
   <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -7,7 +7,7 @@
   </svg>
 </button>
 <!-- Dropdown menu -->
-<div id="dropdown"
+<div id="dropdown1"
   class="z-10 hidden bg-black divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
   <form method="GET">
     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="lantaiDropdown">
