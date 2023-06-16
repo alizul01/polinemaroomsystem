@@ -162,30 +162,10 @@
   "": {
     "name": null,
     "domain": null,
-    "action": "Closure",
-    "uri": "tes",
+    "action": "App\\Http\\Controllers\\AuthController@register",
+    "uri": "register",
     "method": [
-      "GET",
-      "HEAD"
-    ]
-  },
-  "admin.pages.approval": {
-    "name": "admin.pages.approval",
-    "domain": null,
-    "action": "App\\Http\\Controllers\\RoomReservationController@adminReservationIndex",
-    "uri": "admin",
-    "method": [
-      "GET",
-      "HEAD"
-    ]
-  },
-  "admin.reservation.approve": {
-    "name": "admin.reservation.approve",
-    "domain": null,
-    "action": "App\\Http\\Controllers\\RoomReservationController@approve",
-    "uri": "admin",
-    "method": [
-      "PUT"
+      "POST"
     ]
   },
   "index": {
@@ -289,7 +269,7 @@
     "name": "reservation2.index",
     "domain": null,
     "action": "App\\Http\\Controllers\\RoomReservationController@showStep2",
-    "uri": "reservation-2",
+    "uri": "reservation/reservation-2",
     "method": [
       "GET",
       "HEAD"
@@ -299,7 +279,7 @@
     "name": "reservation2.store",
     "domain": null,
     "action": "App\\Http\\Controllers\\RoomReservationController@postStep2",
-    "uri": "reservation-2",
+    "uri": "reservation/reservation-2",
     "method": [
       "POST"
     ]
@@ -308,7 +288,7 @@
     "name": "reservation.final",
     "domain": null,
     "action": "App\\Http\\Controllers\\RoomReservationController@showFinal",
-    "uri": "reservation-final",
+    "uri": "reservation/reservation-final",
     "method": [
       "GET",
       "HEAD"
@@ -318,7 +298,7 @@
     "name": "reservation.final.store",
     "domain": null,
     "action": "App\\Http\\Controllers\\RoomReservationController@finish",
-    "uri": "reservation-final",
+    "uri": "reservation/reservation-final",
     "method": [
       "POST"
     ]
@@ -327,7 +307,7 @@
     "name": "reservation.status",
     "domain": null,
     "action": "App\\Http\\Controllers\\RoomReservationController@reservationStatus",
-    "uri": "reservation-status",
+    "uri": "process",
     "method": [
       "GET",
       "HEAD"
@@ -352,10 +332,29 @@
       "HEAD"
     ]
   },
+  "admin.pages.approval": {
+    "name": "admin.pages.approval",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomReservationController@adminReservationIndex",
+    "uri": "approval",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "admin.reservation.approve": {
+    "name": "admin.reservation.approve",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomReservationController@approve",
+    "uri": "approval",
+    "method": [
+      "PUT"
+    ]
+  },
   "login": {
     "name": "login",
     "domain": null,
-    "action": "Closure",
+    "action": "\\Illuminate\\Routing\\ViewController",
     "uri": "login",
     "method": [
       "GET",
@@ -365,7 +364,7 @@
   "register": {
     "name": "register",
     "domain": null,
-    "action": "Closure",
+    "action": "\\Illuminate\\Routing\\ViewController",
     "uri": "register",
     "method": [
       "GET",

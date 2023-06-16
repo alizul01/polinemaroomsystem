@@ -39,11 +39,10 @@
           <h1 class="text-xl font-semibold my-auto">
             {{ $room->name }}
           </h1>
-          {{-- TODO: PASS DATA KE CONTROLLER LANGSUNG KE HALAMAN RESERVASI --}}
-          <button
+          <a href="{{ route('reservation.index', $room->id) }}"
             class="flex items-center gap-1 text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm px-6 py-4">
             <i class="bx bx-plus text-lg"></i> Booking Ruangan
-          </button>
+          </a>
         </div>
         <div class="flex gap-4">
           <div class="flex flex-col gap-6 border border-gray-400 rounded-md p-6">

@@ -6,7 +6,7 @@ use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\RoomReservation;
-use App\Models\User;
+use Illuminate\Contracts\Session\Session;
 
 class RoomReservationController extends Controller
 {
@@ -35,10 +35,32 @@ class RoomReservationController extends Controller
 
   public function showStep2(Request $request)
   {
+    $capacity = session()->get('step1')['participant'];
     if ($request->has('floor')) {
-      $rooms = Room::where('floor', $request->floor)->paginate(6)->withQueryString();
+      $rooms = Room::where('floor', $request->floor)
+        ->where('capacity', '>=', $capacity)
+        ->whereDoesntHave('RoomReservation', function ($query) use ($request) {
+          $query->where(function ($query) use ($request) {
+            $query->whereBetween('start_time', [session()->get('step1')['start_time'], session()->get('step1')['end_time']])
+              ->orWhereBetween('end_time', [session()->get('step1')['start_time'], session()->get('step1')['end_time']])
+              ->orWhere([
+                ['start_time', '<=', session()->get('step1')['start_time']],
+                ['end_time', '>=', session()->get('step1')['end_time']]
+              ]);
+          })->where('start_date', session()->get('step1')['start_date']);
+        })->paginate(6)->withQueryString();
     } else {
-      $rooms = Room::paginate(6);
+      $rooms = Room::where('capacity', '>=', $capacity)
+        ->whereDoesntHave('RoomReservation', function ($query) use ($request) {
+          $query->where(function ($query) use ($request) {
+            $query->whereBetween('start_time', [session()->get('step1')['start_time'], session()->get('step1')['end_time']])
+              ->orWhereBetween('end_time', [session()->get('step1')['start_time'], session()->get('step1')['end_time']])
+              ->orWhere([
+                ['start_time', '<=', session()->get('step1')['start_time']],
+                ['end_time', '>=', session()->get('step1')['end_time']]
+              ]);
+          })->where('start_date', session()->get('step1')['start_date']);
+        })->paginate(6);
     }
     $step = 2;
     if (!$request->session()->has('step1')) {
@@ -126,6 +148,6 @@ class RoomReservationController extends Controller
   public function adminReservationIndex()
   {
     $reservations = RoomReservation::all();
-    return view('admin.pages.approval', compact('reservations'));
+    return view('admin.pages.peminjaman', compact('reservations'));
   }
 }

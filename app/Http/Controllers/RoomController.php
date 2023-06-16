@@ -13,15 +13,17 @@ class RoomController extends Controller
   /**
    * Display a listing of the resource.
    */
-  public function index(Request $request) {
+  public function index(Request $request)
+  {
     if ($request->has('floor')) {
       $rooms = Room::where('floor', $request->floor)->paginate(6)->withQueryString();
     } else {
       $rooms = Room::paginate(6);
     }
+    $isreservation = false;
 
     $status = RoomReservation::where('user_id', auth()->user()->id)->get();
-    return view('user.ruangan', compact('rooms'));
+    return view('user.ruangan', compact('rooms', 'status', 'isreservation'));
   }
 
   /**
