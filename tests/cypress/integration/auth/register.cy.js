@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 describe('Register Test', () => {
   beforeEach(() => {
-    cy.exec('php artisan db:wipe --env=testing && php artisan migrate --env=testing && php artisan db:seed --env=testing');
+    cy.exec('php artisan migrate:fresh --seed');
     cy.visit('/register');
   });
 
@@ -10,28 +10,38 @@ describe('Register Test', () => {
     cy.get('input[name="email"]').type('johndoe@example.com');
     cy.get('input[name="password"]').type('password123');
     cy.get('input[name="password_confirmation"]').type('password123');
+    cy.get('#register').click();
 
-    const fileName = 'identity-file.jpg';
-    cy.fixture(fileName).then((fileContent) => {
-      cy.get('input[type="file"]').attachFile({
-        fileContent: fileContent.toString(),
-        fileName: fileName,
-        mimeType: 'image/png',
-      });
-    });
+    cy.location('pathname').should('eq', '/login');
+    cy.get('.swal2-title').should('be.visible').contains('Register success');
+  });
 
-    cy.get('button[type="submit"]').click();
+  it('should failed to register a new user when email already exists', () => {
+    cy.get('input[name="name"]').type('John Doe');
+    cy.get('input[name="email"]').type('ali@example.com');
+    cy.get('input[name="password"]').type('password123');
+    cy.get('input[name="password_confirmation"]').type('password123');
+    cy.get('#register').click();
 
-    cy.location('pathname').should('eq', '/');
-    cy.get('.toast-success').should('be.visible').contains('Register success');
+    cy.get('.text-red-500').should('be.visible').contains('The email has already been taken.');
   });
 
   it('should show error messages when validation fails', () => {
-    cy.get('button[type="submit"]').click();
+    cy.get('#register').click();
 
-    cy.get('.invalid-feedback').should('be.visible').contains('The name field is required.');
-    cy.get('.invalid-feedback').should('be.visible').contains('The email field is required.');
-    cy.get('.invalid-feedback').should('be.visible').contains('The password field is required.');
-    cy.get('.invalid-feedback').should('be.visible').contains('The identity field is required.');
+    cy.get('[cy-data="error-name"]').should('be.visible').contains('The name field is required.');
+    cy.get('[cy-data="error-email"]').should('be.visible').contains('The email field is required.');
+    cy.get('[cy-data="error-password"]').should('be.visible').contains('The password field is required.');
+  });
+
+  it('should show error message when password confirmation does not match', () => {
+    cy.get('input[name="name"]').type('John Doe');
+    cy.get('input[name="email"]').type('johndoe@example.com');
+    cy.get('input[name="password"]').type('password123');
+    cy.get('input[name="password_confirmation"]').type('password321');
+
+    cy.get('#register').click();
+
+    cy.get('[cy-data="error-password"]').should('be.visible').contains('The password field confirmation does not match.');
   });
 });

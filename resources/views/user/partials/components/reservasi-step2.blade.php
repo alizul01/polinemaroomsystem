@@ -29,13 +29,13 @@
             <div class="grid grid-cols-3 gap-4">
                 @foreach ($rooms as $room)
                     <x-dashboard.card-room :id="$room->id" status="kosong" :name="$room->name" :image="$room->image"
-                        :capacity="$room->capacity" :isreservation="true"  :code="$room->code" :room="$room" :floor="$room->floor" />
+                        :capacity="$room->capacity" :isreservation="true" :code="$room->code" :room="$room" :floor="$room->floor" />
                 @endforeach
             </div>
             {{ $rooms->links('pagination::tailwind') }}
             <input type="text" id="room_id" hidden name="room_id">
             </div>
-            <button type="submit"
+            <button type="submit" id="submitBtn"
                 class="bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm px-10 text-white py-3 mt-10 ">
                 Pilih
             </button>

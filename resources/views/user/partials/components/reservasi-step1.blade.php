@@ -14,7 +14,7 @@
                             class="w-full py-3 bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500"
                             value="{{ Auth::user()->name }}" disabled>
                         @error('user_id')
-                            <span class="text-red-600">{{ $message }}</span>
+                            <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="flex-1">
@@ -24,7 +24,7 @@
                             class="w-full py-3 bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500"
                             value="{{ Auth::user()->nomor_induk }}" disabled>
                         @error('nomor_induk')
-                            <span class="text-red-600">{{ $message }}</span>
+                            <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                             class="w-full py-3 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500"
                             disabled>
                         @error('phonenumber')
-                            <span class="text-red-600">{{ $message }}</span>
+                            <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                         <input type="date" name="start_date" id="start_date" autocomplete="given-start_date"
                             class="w-full py-3 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500">
                         @error('start_date')
-                            <span class="text-red-600">{{ $message }}</span>
+                            <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="flex-1">
@@ -68,7 +68,7 @@
                         <input type="time" name="start_time" id="start_time" autocomplete="given-start_time"
                             class="w-full py-3 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500">
                         @error('start_time')
-                            <span class="text-red-600">{{ $message }}</span>
+                            <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
@@ -79,15 +79,16 @@
                         <input type="time" name="end_time" id="end_time" autocomplete="given-end_time"
                             class="w-full py-3 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500">
                         @error('end_time')
-                            <span class="text-red-600">{{ $message }}</span>
+                            <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="flex-1">
                         <label for="participant" class="block mb-2 text-sm text-gray-600">Jumlah Orang</label>
                         <input type="number" name="participant" id="participant" autocomplete="given-participant"
+                            min="1"
                             class="w-full py-3 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500">
                         @error('participant')
-                            <span class="text-red-600">{{ $message }}</span>
+                            <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
@@ -101,14 +102,14 @@
                         <textarea name="keterangan" id="keterangan" rows="4"
                             class="w-full py-3 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500"></textarea>
                         @error('keterangan')
-                            <span class="text-red-600">{{ $message }}</span>
+                            <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
             </div>
             <div class="flex justify-between">
                 <span>Keterangan: <span class="text-red-600">*</span> harus diisi</span>
-                <button type="submit"
+                <button type="submit" id="submit"
                     class="flex gap-1 justify-center items-center text-white bg-gray-700 font-medium rounded-lg p-3 text-center hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-100">
                     Lanjutkan<i class="bx bx-right-arrow-alt text-xl"></i>
                 </button>
