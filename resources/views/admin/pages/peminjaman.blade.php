@@ -39,14 +39,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @php
-                            $roles = [
-                                'bem' => 'reservationFormBem',
-                                'himpunan' => 'reservationFormHimpunan',
-                                'kajur' => 'reservationFormKajur',
-                            ];
-                        @endphp
-
                         @foreach ($reservations as $reservation)
                             <tr class="bg-white border-b">
                                 <td class="px-1 text-center py-4">
@@ -64,13 +56,13 @@
 
                                 <td class="px-6 py-4">
                                     @if ($reservation->approved_by_bem == 1)
-                                        <span
+                                        <span id="status-bem-{{ $reservation->id }}"
                                             class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-500 text-white">
                                             Validasi Terkonfirmasi
                                         </span>
                                     @elseif (Auth::user()->role == 'bem')
                                         @if ($reservation->approved_by_bem)
-                                            <span
+                                            <span id="status-bem-{{ $reservation->id }}"
                                                 class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-500 text-white">
                                                 Validasi Terkonfirmasi
                                             </span>
@@ -101,13 +93,13 @@
 
                                 <td class="px-6 py-4">
                                     @if ($reservation->approved_by_himpunan == 1)
-                                        <span
+                                        <span id="status-himpunan-{{ $reservation->id }}"
                                             class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-500 text-white">
                                             Validasi Terkonfirmasi
                                         </span>
                                     @elseif (Auth::user()->role == 'hmti')
                                         @if ($reservation->approved_by_himpunan)
-                                            <span
+                                            <span id="status-himpunan-{{ $reservation->id }}"
                                                 class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-500 text-white">
                                                 Validasi Terkonfirmasi
                                             </span>
@@ -138,13 +130,13 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     @if ($reservation->approved_by_kepala_jurusan == 1)
-                                        <span
+                                        <span id="status-kajur-{{ $reservation->id }}"
                                             class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-500 text-white">
                                             Validasi Terkonfirmasi
                                         </span>
                                     @elseif (Auth::user()->role == 'kajur')
                                         @if ($reservation->approved_by_kepala_jurusan)
-                                            <span
+                                            <span id="status-kajur-{{ $reservation->id }}"
                                                 class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-500 text-white">
                                                 Validasi Terkonfirmasi
                                             </span>

@@ -24,7 +24,7 @@ class RoomReservationController extends Controller
       'start_date' => 'required',
       'start_time' => 'required',
       'end_time' => 'required|after:start_time',
-      'participant' => 'required',
+      'participant' => 'required|min:1',
       'keterangan' => 'required',
     ]);
     $validatedData['user_id'] = auth()->user()->id;

@@ -10,7 +10,7 @@
                         @include('user.partials.components.dropdown')
                     </div>
                 </div>
-                <div class="grid grid-cols-3 gap-4">
+                <div class="grid grid-cols-3 gap-4" id="roomlist">
                     @foreach ($rooms as $room)
                         <x-dashboard.card-room :id="$room->id" status="kosong" :isreservation="false" :name="$room->name"
                             :image="$room->image" :capacity="$room->capacity" :code="$room->code" :room="$room" :floor="$room->floor" />

@@ -33,7 +33,7 @@
     <td class="px-6 py-4">
         {{ \Carbon\Carbon::parse($dateUse)->format('d F Y') }}
     </td>
-    <td class="px-6 py-4">
+    <td class="px-6 py-4" id="status-{{ $id }}">
         @if ($status == 'Pending' || $status == 'Pending')
             <button type="button" disabled
                 class="focus:outline-none bg-yellow-400 text-white  font-medium rounded-lg text-sm p-2">
@@ -54,7 +54,7 @@
     <td class="px-6 py-4">
         <div id="accordion-collapse" data-accordion="collapse">
             <span id="accordion-collapse-heading-{{ $id }}">
-                <button type="button" class="font-medium text-gray-500"
+                <button type="button" class="font-medium text-gray-500" id="accordion-collapse-button"
                     data-accordion-target="#accordion-collapse-{{ $id }}" aria-expanded="false"
                     aria-controls="accordion-collapse-{{ $id }}">
                     <svg data-accordion-icon class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20"
@@ -166,7 +166,7 @@
                             <div
                                 class="z-10 text-white flex items-center justify-center w-12 h-12 {{ $status == 'Approved' ? 'bg-green-500' : 'bg-yellow-500' }} rounded-full ring-0 ring-white sm:ring-8 shrink-0">
                                 @if ($status == 'Approved')
-                                    <form action="{{ route('user.reservation.generate') }}" method="POST">
+                                    <form id="status-download-{{ $id }}" action="{{ route('user.reservation.generate') }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $id }}">
                                         <button type="submit">

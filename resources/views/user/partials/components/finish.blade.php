@@ -58,7 +58,7 @@
                 :capacity="$room->capacity" :code="$room->code" :room="$room" :floor="$room->floor" />
             <form action="{{ route('reservation.final.store') }}" method="POST" class="my-5">
                 @csrf
-                <button type="submit"
+                <button type="submit" id="submitBtn"
                     class="text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm px-5 py-3">
                     Konfirmasi
                 </button>
