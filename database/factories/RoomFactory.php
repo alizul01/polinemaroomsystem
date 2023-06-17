@@ -27,11 +27,11 @@ class RoomFactory extends Factory
         $randomKey = $this->faker->randomElement(array_keys($rooms));
 
         return [
-            'name' => $rooms[$randomKey],
+            'name' => $rooms[$randomKey] . ' ' . $this->faker->numberBetween(1, 3) . $this->faker->randomLetter,
             'code' => $randomKey,
             'capacity' => $this->faker->numberBetween(30, 60),
             'floor' => $this->faker->numberBetween(1, 3),
-            'image' => 'https://source.unsplash.com/1920x1080/?classroom?sig=' . $this->faker->numberBetween(1, 1000),
+            'image' => 'https://source.unsplash.com/1920x1080/?classroom?sig=' . $this->faker->numberBetween(1, 1000) . '&random=' . $this->faker->numberBetween(1, 1000)
         ];
     }
 }

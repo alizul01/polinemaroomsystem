@@ -12,7 +12,7 @@
       <div class="grid grid-cols-3 gap-4">
         @foreach ($rooms as $room)
           <x-dashboard.card-room :id="$room->id" status="kosong" :name="$room->name" :image="$room->image"
-            :capacity="$room->capacity" :code="$room->code" :room="$room" :floor="$room->floor" />
+            :capacity="$room->capacity" :isreservation="$isreservation" :code="$room->code" :room="$room" :floor="$room->floor" />
         @endforeach
       </div>
       {{ $rooms->links('pagination::tailwind') }}

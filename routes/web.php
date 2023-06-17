@@ -8,15 +8,8 @@ use App\Http\Controllers\{
   RoomController,
   RoomReservationController
 };
+use App\Models\Room;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/admin/home', function () {
-  return view('admin.pages.home');
-})->name('tes');
-
-Route::get('admin/peminjaman', function () {
-  return view('admin.pages.peminjaman');
-})->name('tes');
 
 Route::group(['middleware' => ['auth']], function () {
   Route::get('/', [DashboardController::class, 'index'])->name('index');
@@ -35,9 +28,16 @@ Route::group(['middleware' => ['auth']], function () {
   Route::post('/report-pdf', [ReportingController::class, 'createReportingPDF'])->name('user.reservation.generate');
   Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
-  Route::group(['prefix' => 'approval', 'middleware' => 'admin'], function () {
-    Route::get('/', [RoomReservationController::class, 'adminReservationIndex'])->name('admin.pages.approval');
-    Route::put('/', [RoomReservationController::class, 'approve'])->name('admin.reservation.approve');
+  Route::group(['middleware' => 'admin'], function () {
+    Route::group(['prefix' => 'approval'], function () {
+      Route::get('/', [RoomReservationController::class, 'adminReservationIndex'])->name('admin.pages.approval');
+      Route::put('/', [RoomReservationController::class, 'approve'])->name('admin.reservation.approve');
+    });
+
+    Route::get('/test', function () {
+      $rooms = Room::paginate(6);
+      return view('admin.pages.home', compact('rooms'));
+    });
   });
 });
 
@@ -47,5 +47,3 @@ Route::group(['middleware' => ['guest']], function () {
   Route::post('/login', [AuthController::class, 'login']);
   Route::post('/register', [AuthController::class, 'register']);
 });
-
-Route::get('/tes');

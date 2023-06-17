@@ -164,8 +164,8 @@
                     <li class="relative mb-6 sm:mb-0">
                         <div class="flex items-center">
                             <div
-                                class="z-10 text-white flex items-center justify-center w-12 h-12 {{ $colorState4 }} rounded-full ring-0 ring-white sm:ring-8 shrink-0">
-                                @if ($status)
+                                class="z-10 text-white flex items-center justify-center w-12 h-12 {{ $status == 'Approved' ? 'bg-green-500' : 'bg-yellow-500' }} rounded-full ring-0 ring-white sm:ring-8 shrink-0">
+                                @if ($status == 'Approved')
                                     <form action="{{ route('user.reservation.generate') }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $id }}">
