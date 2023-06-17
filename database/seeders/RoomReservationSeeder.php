@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use \Models\RoomReservation;
+use App\Models\RoomReservation;
 use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;

@@ -59,8 +59,6 @@ class ReportingController extends Controller
   {
     $phpWord = new \PhpOffice\PhpWord\TemplateProcessor($template_path);
     $phpWord->setValues($values);
-
-    // Your code to generate the document here...
     $phpWord->setValues($values);
     $phpWord->setImageValue('img', [
       'path' => 'https://logodownload.org/wp-content/uploads/2017/10/Starbucks-logo.png',
