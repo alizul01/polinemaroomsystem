@@ -1,13 +1,18 @@
 /// <reference types="cypress" />
 
 describe('Dashboard Test', () => {
-  beforeEach(() => {
+  before(() => {
     cy.exec('php artisan migrate:fresh --seed');
+  })
+
+  beforeEach(() => {
     cy.visit('/login');
     cy.get('input[name="email"]').type('ali@example.com');
     cy.get('input[name="password"]').type('password');
     cy.get('.text-white').click();
   })
+
+
 
   it('should show dashboard page', () => {
     cy.location('pathname').should('eq', '/');
@@ -25,13 +30,13 @@ describe('Dashboard Test', () => {
   });
 
   it('should can click process link and show process page', () => {
-    cy.get('a[href="/process"]').click();
+    cy.contains('Proses').click();
     cy.location('pathname').should('eq', '/process');
   });
 
   it('should can click logout link and show login page', () => {
     cy.get('#userDropdown').click();
-    cy.get('a[href="/logout"]').click();
+    cy.contains('Logout').click();
     cy.location('pathname').should('eq', '/login');
   });
 });
