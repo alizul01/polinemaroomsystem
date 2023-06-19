@@ -1,5 +1,5 @@
 @extends('layout.auth')
 
 @section('authForm')
-  Forgot password
+  Forgot password form
 @endsection
