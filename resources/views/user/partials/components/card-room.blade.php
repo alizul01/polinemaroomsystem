@@ -61,7 +61,8 @@
                 if (button === selectedButton) {
                     // The button was already selected. Deselect it and re-enable all buttons.
                     button.classList.remove('bg-green-500');
-                    button.classList.add('bg-gray-800');
+                    button.classList.add('bg-gray-400');
+                    button.disabled = true;
                     bookingButtons.forEach((btn) => {
                         btn.disabled = false;
                         btn.classList.remove('bg-gray-400');
@@ -81,10 +82,36 @@
 
                     // Select the clicked button.
                     button.disabled = false;
-                    button.classList.remove('bg-gray-400');
+                    button.classList.remove('bg-gray-800');
                     button.classList.add('bg-green-500');
                     selectedButton = button;
                     input.value = button.id.replace('bookBtn', '');
+
+                    if (selectedButton) {
+                        bookingButtons.forEach((btn) => {
+                            if (btn !== selectedButton) {
+                                btn.classList.remove('bg-gray-800', 'bg-yellow-400',
+                                    'hover:bg-green-500',
+                                    'hover:bg-gray-900');
+                                btn.classList.add('bg-gray-400');
+                                btn.disabled = true;
+                            }
+                        });
+                    }
+                }
+            });
+
+            button.addEventListener('mouseover', function() {
+                if (button !== selectedButton) {
+                    button.classList.remove('bg-gray-800');
+                    button.classList.add('hover:bg-green-500');
+                }
+            });
+
+            button.addEventListener('mouseout', function() {
+                if (button !== selectedButton) {
+                    button.classList.remove('hover:bg-green-500');
+                    button.classList.add('bg-gray-800');
                 }
             });
         });

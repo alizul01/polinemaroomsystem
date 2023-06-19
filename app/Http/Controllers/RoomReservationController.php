@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RoomReservationPostStepOne;
 use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Models\Room;
@@ -18,15 +19,9 @@ class RoomReservationController extends Controller
     return view('user.partials.components.reservasi-step1', compact('rooms', 'organizations', 'step'));
   }
 
-  public function postStep1(Request $request)
+  public function postStep1(RoomReservationPostStepOne $request)
   {
-    $validatedData = $request->validate([
-      'start_date' => 'required',
-      'start_time' => 'required',
-      'end_time' => 'required|after:start_time',
-      'participant' => 'required|min:1',
-      'keterangan' => 'required',
-    ]);
+    $validatedData = $request->validated();
     $validatedData['user_id'] = auth()->user()->id;
 
     session()->put('step1', $validatedData);
@@ -62,6 +57,11 @@ class RoomReservationController extends Controller
           })->where('start_date', session()->get('step1')['start_date']);
         })->paginate(6);
     }
+
+    if ($rooms->isEmpty()) {
+      alert()->error('Ruangan tidak tersedia');
+    }
+
     $step = 2;
     if (!$request->session()->has('step1')) {
       return redirect()->route('form.step1');
