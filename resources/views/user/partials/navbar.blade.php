@@ -12,7 +12,7 @@
                 <form method="GET">
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="userDropdown">
                         <li class="hover:bg-gray-800">
-                            <a type="submit" href="{{ route('logout') }}" class="block px-4 py-2 text-white">
+                            <a type="submit" href=/logout" class="block px-4 py-2 text-white">
                                 Logout
                             </a>
                         </li>

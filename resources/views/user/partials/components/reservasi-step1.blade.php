@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="flex flex-col grow p-6 bg-white border-2 rounded-lg shadow-md min-w-fit">
-        <form class="flex flex-col gap-9" action="{{ route('reservation.store') }}" method="POST">
+        <form class="flex flex-col gap-9" method="POST">
             @csrf
             <div class="flex flex-col gap-4">
                 <h1 class="text-xl font-medium">Data Peminjam</h1>

@@ -68,7 +68,7 @@
                                             </span>
                                         @elseif (Auth::user()->role == 'bem')
                                             <form id="{{ $reservation->id }}" method="post"
-                                                action="{{ route('admin.reservation.approve') }}">
+                                                action="/approval">
                                                 @csrf
                                                 @method('PUT')
                                                 <input type="hidden" name="reservation_id" value="{{ $reservation->id }}">
@@ -105,7 +105,7 @@
                                             </span>
                                         @elseif (Auth::user()->role == 'hmti')
                                             <form id="{{ $reservation->id }}" method="post"
-                                                action="{{ route('admin.reservation.approve') }}">
+                                                action="/approval">
                                                 @csrf
                                                 @method('PUT')
                                                 <input type="hidden" name="reservation_id" value="{{ $reservation->id }}">
@@ -142,7 +142,7 @@
                                             </span>
                                         @elseif (Auth::user()->role == 'kajur')
                                             <form id="{{ $reservation->id }}" method="post"
-                                                action="{{ route('admin.reservation.approve') }}">
+                                                action="/approval">
                                                 @csrf
                                                 @method('PUT')
                                                 <input type="hidden" name="reservation_id" value="{{ $reservation->id }}">

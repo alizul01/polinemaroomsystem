@@ -41,7 +41,7 @@
             <td class="px-6 py-4 whitespace-nowrap">{{ $reservation->end_time }}</td>
             <td class="px-6 py-4 whitespace-nowrap">{{ $reservation->status }}</td>
             <td class="px-6 py-4 whitespace-nowrap">
-              <form method="post" action="{{ route('admin.reservation.approve') }}">
+              <form method="post" action="/approval">
                 @csrf
                 @method('PUT')
                 <input type="hidden" name="reservation_id" value="{{ $reservation->id }}">

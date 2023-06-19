@@ -12,7 +12,7 @@
         <form method="GET">
           <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="userDropdown">
             <li class="hover:bg-gray-800">
-              <a type="submit" href="{{ route('logout') }}" class="block px-4 py-2 text-white">
+              <a type="submit" href="/logout" class="block px-4 py-2 text-white">
                 Logout
               </a>
             </li>
@@ -27,20 +27,20 @@
       class="flex lg:flex-row flex-col gap-4 justify-between {{ request()->is('/') ? 'mb-24' : 'mb-[2.6rem]' }}">
       <ul class="flex my-auto justify-between md:justify-start md:gap-10">
         <li>
-          <a href="{{ route('index') }}"
+          <a href="/"
             class="no-underline {{ request()->is('/') ? 'text-white' : 'text-white/40 hover:text-white' }}">
             <span>Home</span>
           </a>
         </li>
         <li>
-          <a href="{{ route('reservation.index') }}"
+          <a href="/reservation"
             class="no-underline {{ request()->is('reservation*') ? 'text-white' : 'text-white/40 hover:text-white' }}">
             <span>Peminjaman</span>
           </a>
         </li>
         @if (Auth::user()->isAdmin())
           <li>
-            <a href="{{ route('admin.pages.approval') }}"
+            <a href="/approval"
               class="no-underline {{ request()->is('admin*') ? 'text-white' : 'text-white/40 hover:text-white' }}">
               <span>Ruangan</span>
             </a>

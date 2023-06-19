@@ -24,7 +24,7 @@
                 @include('user.partials.components.dropdown')
             </div>
         </div>
-        <form method="POST" action="{{ route('reservation2.store') }}">
+        <form method="POST">
             @csrf
             <div class="grid grid-cols-3 gap-4">
                 @foreach ($rooms as $room)
