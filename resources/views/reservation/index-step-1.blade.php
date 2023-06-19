@@ -1,4 +1,4 @@
-@extends('user.reservasi')
+@extends('layout.reservation')
 
 @section('content')
     <section class="flex flex-col grow p-6 bg-white border-2 rounded-lg shadow-md min-w-fit">

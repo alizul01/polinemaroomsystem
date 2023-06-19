@@ -1,4 +1,4 @@
-@extends('user.reservasi')
+@extends('layout.reservation')
 
 @section('content')
     <section class="flex flex-col grow gap-4 p-6 bg-white  border-2 rounded-lg shadow-md w-1/2">
@@ -54,7 +54,7 @@
             <h1 class="font-bold text-3xl text-slate-700 my-5">
                 Ruangan yang dipinjam
             </h1>
-            <x-dashboard.card-room :id="$room->id" status="kosong" :isreservation="false" :name="$room->name" :image="$room->image"
+            <x-card-room :id="$room->id" status="kosong" :isreservation="false" :name="$room->name" :image="$room->image"
                 :capacity="$room->capacity" :code="$room->code" :room="$room" :floor="$room->floor" />
             <form action="/reservation/reservation-final" method="POST" class="my-5">
                 @csrf

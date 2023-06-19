@@ -67,8 +67,7 @@
                                                 Validasi Terkonfirmasi
                                             </span>
                                         @elseif (Auth::user()->role == 'bem')
-                                            <form id="{{ $reservation->id }}" method="post"
-                                                action="/approval">
+                                            <form id="{{ $reservation->id }}" method="post" action="/approval">
                                                 @csrf
                                                 @method('PUT')
                                                 <input type="hidden" name="reservation_id" value="{{ $reservation->id }}">
@@ -104,8 +103,7 @@
                                                 Validasi Terkonfirmasi
                                             </span>
                                         @elseif (Auth::user()->role == 'hmti')
-                                            <form id="{{ $reservation->id }}" method="post"
-                                                action="/approval">
+                                            <form id="{{ $reservation->id }}" method="post" action="/approval">
                                                 @csrf
                                                 @method('PUT')
                                                 <input type="hidden" name="reservation_id" value="{{ $reservation->id }}">
@@ -141,8 +139,7 @@
                                                 Validasi Terkonfirmasi
                                             </span>
                                         @elseif (Auth::user()->role == 'kajur')
-                                            <form id="{{ $reservation->id }}" method="post"
-                                                action="/approval">
+                                            <form id="{{ $reservation->id }}" method="post" action="/approval">
                                                 @csrf
                                                 @method('PUT')
                                                 <input type="hidden" name="reservation_id" value="{{ $reservation->id }}">

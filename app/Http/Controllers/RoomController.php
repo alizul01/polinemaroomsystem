@@ -23,7 +23,7 @@ class RoomController extends Controller
     $isreservation = false;
 
     $status = RoomReservation::where('user_id', auth()->user()->id)->get();
-    return view('user.ruangan', compact('rooms', 'status', 'isreservation'));
+    return view('room.index', compact('rooms', 'status', 'isreservation'));
   }
 
   /**
@@ -48,7 +48,7 @@ class RoomController extends Controller
   public function show(Room $room)
   {
     $roomReservation = RoomReservation::where('room_id', $room->id)->get();
-    return view('user.detail-ruangan', compact('room', 'roomReservation'));
+    return view('room.show', compact('room', 'roomReservation'));
   }
 
   /**

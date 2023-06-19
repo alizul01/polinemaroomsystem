@@ -1,4 +1,4 @@
-@extends('user.reservasi')
+@extends('layout.reservation')
 
 @section('content')
     <section class="flex flex-col grow gap-4 p-6 bg-white  border-2 rounded-lg shadow-md w-1/2">
@@ -28,7 +28,7 @@
             @csrf
             <div class="grid grid-cols-3 gap-4">
                 @foreach ($rooms as $room)
-                    <x-dashboard.card-room :id="$room->id" status="kosong" :name="$room->name" :image="$room->image"
+                    <x-card-room :id="$room->id" status="kosong" :name="$room->name" :image="$room->image"
                         :capacity="$room->capacity" :isreservation="true" :code="$room->code" :room="$room" :floor="$room->floor" />
                 @endforeach
             </div>

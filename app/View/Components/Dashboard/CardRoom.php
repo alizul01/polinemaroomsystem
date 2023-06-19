@@ -38,6 +38,6 @@ class CardRoom extends Component
    */
   public function render(): View|Closure|string
   {
-    return view('user.partials.components.card-room');
+    return view('components.card-room');
   }
 }
