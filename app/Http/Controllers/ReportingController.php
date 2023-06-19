@@ -70,7 +70,7 @@ class ReportingController extends Controller
       'align' => 'center'
     ]);
     $phpWord->setImageValue('ttd', [
-      'path' => 'https://upload.wikimedia.org/wikipedia/commons/0/04/Tanda_tangan_bapak.png',
+      'path' => public_path('img/ttd.png'),
       'width' => 100,
       'height' => 100,
       'ratio' => true,
