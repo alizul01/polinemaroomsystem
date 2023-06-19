@@ -7,7 +7,7 @@
   </div>
   <div class="flex flex-col gap-2 text-center">
     <h1 class="text-3xl font-semibold text-gray-800">Login to your account</h1>
-    <p class="text-lg text-gray-500">or login as admin</p>
+    <p class="text-lg text-gray-500">or login as an Admin</p>
   </div>
   <form method="POST" class="flex flex-col gap-7 md:w-1/2 w-full">
     @csrf
