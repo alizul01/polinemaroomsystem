@@ -21,13 +21,16 @@ class ReportingController extends Controller
       return redirect()->back();
     }
 
-    $template_path = storage_path('app/public/template/surat_peminjaman_ruangan.docx');
+    $template_path = public_path('template/surat_peminjaman_ruangan.docx');
     $values = $this->getValuesForTemplate($roomReservation);
     $path = $this->generateDocumentFromTemplate($template_path, $values);
 
     toast()->success('Berhasil membuat surat peminjaman ruangan', 'Berhasil');
-    return response()->download($path);
+    $filename = $values['nama_kegiatan'] . '.docx';
+    // Create response and delete temp file
+    return response()->download($path, $filename)->deleteFileAfterSend(true);
   }
+
 
 
   private function getValuesForTemplate(RoomReservation $roomReservation)
@@ -59,7 +62,6 @@ class ReportingController extends Controller
   {
     $phpWord = new \PhpOffice\PhpWord\TemplateProcessor($template_path);
     $phpWord->setValues($values);
-    $phpWord->setValues($values);
     $phpWord->setImageValue('img', [
       'path' => 'https://logodownload.org/wp-content/uploads/2017/10/Starbucks-logo.png',
       'width' => 100,
@@ -74,10 +76,12 @@ class ReportingController extends Controller
       'ratio' => true,
       'align' => 'center'
     ]);
-    $path = storage_path('app/public/documents/' . $values['nomor_surat'] . '_');
-    $filename = $values['nama_kegiatan'] . '.docx';
-    $phpWord->saveAs($path . $filename);
 
-    return $path . $filename;
+    // Create temp file
+    $temp_file = tempnam(sys_get_temp_dir(), 'PHPWord');
+    $phpWord->saveAs($temp_file);
+
+    return $temp_file;
   }
+
 }

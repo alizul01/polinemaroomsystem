@@ -60,16 +60,6 @@ class ProcessBody extends Component
     $this->reasonFour = $reasonFour;
   }
 
-  public function getColorState($approvalStatus): string
-  {
-    return match ($approvalStatus) {
-      true => 'bg-green-500',
-      null => 'bg-yellow-500',
-      false => 'bg-red-500',
-      default => 'bg-yellow-500',
-    };
-  }
-
 
   public function render(): View|Closure|string
   {
