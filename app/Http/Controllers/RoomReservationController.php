@@ -86,7 +86,7 @@ class RoomReservationController extends Controller
     $step1 = session()->get('step1');
     $step2 = session()->get('step2');
     $room = Room::where('id', $step2["room_id"])->first();
-    return view('user.partials.components.finish', compact('step', 'step1', 'step2', 'room'));
+    return view('reservation.finish', compact('step', 'step1', 'step2', 'room'));
   }
 
   public function finish(Request $request)
