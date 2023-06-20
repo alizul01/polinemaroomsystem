@@ -28,7 +28,7 @@ describe('Dashboard Test', () => {
   });
 
   it('should can click process link and show process page', () => {
-    cy.contains('proses').click();
+    cy.contains('Proses').click();
     cy.location('pathname').should('eq', '/process');
   });
 

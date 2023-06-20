@@ -39,7 +39,7 @@
                             <input type="text" class="form-control" id="role" name="nomor_telepon"
                                 value="{{ $user->nomor_telepon }}">
                         </div>
-                        <button type="submit" class="btn btn-primary me-2">Update</button>
+                        <button id="submit" type="submit" class="btn btn-primary me-2">Update</button>
                     </form>
 
                 </div>

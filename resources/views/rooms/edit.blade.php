@@ -9,7 +9,7 @@
                         <button class="btn btn-secondary mb-3">Kembali</button>
                     </form>
                     <h6 class="card-title">Edit Ruangan</h6>
-                    <form method="POST" action="{{ route('room.update', $room->id) }}">
+                    <form method="POST" action="/admin/room/{{ $room->id }}">
                         @csrf
                         @method('PUT')
 
@@ -54,7 +54,7 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-primary me-2">Update</button>
+                        <button id="submit" type="submit" class="btn btn-primary me-2">Update</button>
                     </form>
 
                 </div>

@@ -9,7 +9,7 @@
                         <button class="btn btn-secondary mb-3">Kembali</button>
                     </form>
                     <h6 class="card-title">Buat Ruangan Baru</h6>
-                    <form method="POST" action="{{ route('room.store') }}">
+                    <form method="POST" action="/admin/room">
                         @csrf
 
                         <div class="mb-3">
@@ -53,7 +53,7 @@
                             @enderror
                         </div>
                         <input hidden name="image" value="https://source.unsplash.com/1920x1080/?classroom" />
-                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <button id="submit" type="submit" class="btn btn-primary me-2">Submit</button>
                     </form>
 
                 </div>

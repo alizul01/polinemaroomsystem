@@ -36,7 +36,7 @@
                                             <a href="{{ route('user.show', $user->id) }}" class="btn btn-info">Show</a>
                                             <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary">Edit</a>
                                             <form id="form-{{ $user->id }}"
-                                                action="{{ route('user.destroy', $user->id) }}" method="POST">
+                                                action="/admin/user/{{ $user->id }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" class="btn btn-danger"

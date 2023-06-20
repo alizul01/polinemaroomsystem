@@ -1,9 +1,5 @@
 @extends('layout.admin.master')
 
-@push('plugin-styles')
-    <link href="{{ asset('assets/plugins/flatpickr/flatpickr.min.css') }}" rel="stylesheet" />
-@endpush
-
 @section('content')
     <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
         <div>
@@ -114,7 +110,3 @@
         </div>
     </div>
 @endsection
-
-@push('custom-scripts')
-    <script src="{{ asset('assets/js/dashboard.js') }}"></script>
-@endpush

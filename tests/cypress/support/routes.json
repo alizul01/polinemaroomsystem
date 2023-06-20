@@ -178,72 +178,14 @@
       "HEAD"
     ]
   },
-  "room.index": {
-    "name": "room.index",
-    "domain": null,
-    "action": "App\\Http\\Controllers\\RoomController@index",
-    "uri": "room",
-    "method": [
-      "GET",
-      "HEAD"
-    ]
-  },
-  "room.create": {
-    "name": "room.create",
-    "domain": null,
-    "action": "App\\Http\\Controllers\\RoomController@create",
-    "uri": "room/create",
-    "method": [
-      "GET",
-      "HEAD"
-    ]
-  },
-  "room.store": {
-    "name": "room.store",
-    "domain": null,
-    "action": "App\\Http\\Controllers\\RoomController@store",
-    "uri": "room",
-    "method": [
-      "POST"
-    ]
-  },
-  "room.show": {
-    "name": "room.show",
+  "room.show-user": {
+    "name": "room.show-user",
     "domain": null,
     "action": "App\\Http\\Controllers\\RoomController@show",
     "uri": "room/{room}",
     "method": [
       "GET",
       "HEAD"
-    ]
-  },
-  "room.edit": {
-    "name": "room.edit",
-    "domain": null,
-    "action": "App\\Http\\Controllers\\RoomController@edit",
-    "uri": "room/{room}/edit",
-    "method": [
-      "GET",
-      "HEAD"
-    ]
-  },
-  "room.update": {
-    "name": "room.update",
-    "domain": null,
-    "action": "App\\Http\\Controllers\\RoomController@update",
-    "uri": "room/{room}",
-    "method": [
-      "PUT",
-      "PATCH"
-    ]
-  },
-  "room.destroy": {
-    "name": "room.destroy",
-    "domain": null,
-    "action": "App\\Http\\Controllers\\RoomController@destroy",
-    "uri": "room/{room}",
-    "method": [
-      "DELETE"
     ]
   },
   "reservation.index": {
@@ -369,6 +311,152 @@
     "method": [
       "GET",
       "HEAD"
+    ]
+  },
+  "admin.index": {
+    "name": "admin.index",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\SuperAdminController@index",
+    "uri": "admin",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "user.index": {
+    "name": "user.index",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\UserController@index",
+    "uri": "admin/user",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "user.create": {
+    "name": "user.create",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\UserController@create",
+    "uri": "admin/user/create",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "user.store": {
+    "name": "user.store",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\UserController@store",
+    "uri": "admin/user",
+    "method": [
+      "POST"
+    ]
+  },
+  "user.show": {
+    "name": "user.show",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\UserController@show",
+    "uri": "admin/user/{user}",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "user.edit": {
+    "name": "user.edit",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\UserController@edit",
+    "uri": "admin/user/{user}/edit",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "user.update": {
+    "name": "user.update",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\UserController@update",
+    "uri": "admin/user/{user}",
+    "method": [
+      "PUT",
+      "PATCH"
+    ]
+  },
+  "user.destroy": {
+    "name": "user.destroy",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\UserController@destroy",
+    "uri": "admin/user/{user}",
+    "method": [
+      "DELETE"
+    ]
+  },
+  "room.index": {
+    "name": "room.index",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomController@index",
+    "uri": "admin/room",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "room.create": {
+    "name": "room.create",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomController@create",
+    "uri": "admin/room/create",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "room.store": {
+    "name": "room.store",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomController@store",
+    "uri": "admin/room",
+    "method": [
+      "POST"
+    ]
+  },
+  "room.show": {
+    "name": "room.show",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomController@show",
+    "uri": "admin/room/{room}",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "room.edit": {
+    "name": "room.edit",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomController@edit",
+    "uri": "admin/room/{room}/edit",
+    "method": [
+      "GET",
+      "HEAD"
+    ]
+  },
+  "room.update": {
+    "name": "room.update",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomController@update",
+    "uri": "admin/room/{room}",
+    "method": [
+      "PUT",
+      "PATCH"
+    ]
+  },
+  "room.destroy": {
+    "name": "room.destroy",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomController@destroy",
+    "uri": "admin/room/{room}",
+    "method": [
+      "DELETE"
     ]
   }
 }

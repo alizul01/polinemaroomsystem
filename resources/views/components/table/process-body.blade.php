@@ -167,7 +167,7 @@
                                 class="z-10 text-white flex items-center justify-center w-12 h-12 {{ $status == 'Approved' ? 'bg-green-500' : 'bg-yellow-500' }} rounded-full ring-0 ring-white sm:ring-8 shrink-0">
                                 @if ($status == 'Approved')
                                     <form id="status-download-{{ $id }}"
-                                        action="{{ route('user.reservation.generate') }}" method="POST">
+                                        action="/report-pdf" method="POST">
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $id }}">
                                         <button type="submit">

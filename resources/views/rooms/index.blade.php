@@ -37,7 +37,7 @@
                                             <a href="{{ route('room.show', $item->id) }}" class="btn btn-info">Show</a>
                                             <a href="{{ route('room.edit', $item->id) }}" class="btn btn-primary">Edit</a>
                                             <form id="form-{{ $item->id }}"
-                                                action="{{ route('room.destroy', $item->id) }}" method="POST">
+                                                action="/admin/room/{{ $item->id }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" class="btn btn-danger"

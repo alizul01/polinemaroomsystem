@@ -67,12 +67,8 @@ describe('Reservation Test', () => {
     cy.get('form').submit();
 
     cy.url().should('include', '/reservation-final');
-
-    // Here we should check if the data is correctly displayed on the final page
     cy.get('tbody').within(() => {
-      cy.get('tr').should('have.length', 5) // The number of rows should match the number of reservation fields
-
-      // Check if the data is correctly displayed, you might need to adjust the `eq` values
+      cy.get('tr').should('have.length', 5)
       cy.get('tr').eq(0).find('td').eq(2).should('contain', '20 July 2023'); // start_date
       cy.get('tr').eq(1).find('td').eq(2).should('contain', '09:00'); // start_time
       cy.get('tr').eq(2).find('td').eq(2).should('contain', '15:00'); // end_time

@@ -21,7 +21,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ @old('email') }} }}" />
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ @old('email') }}" />
                             @error('email')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -29,7 +29,7 @@
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control" id="password" name="password" autocomplete="off"
-                                placeholder="Password" value="{{ @old('password') }} }}" />
+                                placeholder="Password" value="{{ @old('password') }}" />
                             @error('password')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -48,7 +48,7 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <button id="submit" type="submit" class="btn btn-primary me-2">Submit</button>
                     </form>
 
                 </div>
