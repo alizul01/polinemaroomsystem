@@ -18,7 +18,7 @@
             autofocus="false" />
         <x-forms.input type="password" name="password_confirmation" label="Confirm Password" placeholder="********"
             icon="password" autofocus="false" />
-        <x-forms.input type="text" name="phone_number" label="Phone Number" placeholder="08xxxxxxxxxx" icon="phone"
+        <x-forms.input type="text" name="nomor_telepon" label="Phone Number" placeholder="08xxxxxxxxxx" icon="phone"
             autofocus="false" />
         <x-forms.input type="text" name="nomor_induk" label="Nomor Induk" placeholder="xxxxxxxxxx" icon="nomor_induk"
             autofocus="false" />

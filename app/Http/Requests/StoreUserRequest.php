@@ -27,7 +27,7 @@ class StoreUserRequest extends FormRequest
             'password' => 'required|string|min:8',
             'role' => 'required|string|in:user,superadmin,bem,kajur,hmti',
             'organization_id' => 'exists:organizations,id',
-            'phone_number' => 'required|string|max:255',
+            'nomor_telepon' => 'required|string|max:255',
             'nomor_induk' => 'required|string|max:255',
         ];
     }
