@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('name');
             $table->integer('floor');
             $table->string('image');
+            $table->enum('position', ['barat', 'timur']);
+            $table->enum('type', ['laboratorium', 'class', 'auditorium', 'meeting']);
             $table->integer('capacity');
             $table->timestamps();
         });

@@ -7,10 +7,16 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-baseline mb-4">
                         <h6 class="card-title mb-0">Users</h6>
-                        <button class="btn btn-primary">
-                            <i data-feather="plus"></i>
-                            <a href="{{ route('room.create') }}" class="text-white">Tambah Ruangan</a>
-                        </button>
+                        <div class="d-flex gap-2">
+                            <a href="/upload" class="btn btn-outline-primary btn-icon-text me-2 mb-2 mb-md-0">
+                                <i data-feather="upload" class="btn-icon-prepend"></i>
+                                Import Excel
+                            </a>
+                            <button class="btn btn-primary">
+                                <i data-feather="plus"></i>
+                                <a href="{{ route('room.create') }}" class="text-white">Tambah Ruangan</a>
+                            </button>
+                        </div>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-hover mb-0">
@@ -36,8 +42,8 @@
                                         <td class="d-flex justify-content-start gap-2 ">
                                             <a href="{{ route('room.show', $item->id) }}" class="btn btn-info">Show</a>
                                             <a href="{{ route('room.edit', $item->id) }}" class="btn btn-primary">Edit</a>
-                                            <form id="form-{{ $item->id }}"
-                                                action="/admin/room/{{ $item->id }}" method="POST">
+                                            <form id="form-{{ $item->id }}" action="/admin/room/{{ $item->id }}"
+                                                method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" class="btn btn-danger"
