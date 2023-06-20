@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,42 +19,29 @@ class AuthController extends Controller
     return '/';
   }
 
-  public function login(Request $request)
+  public function login(LoginRequest $request)
   {
-    $request->validate([
-      'email' => 'required|email',
-      'password' => 'required',
-    ]);
-
+    $request->validated();
     $credentials = $request->only('email', 'password');
 
     if (Auth::attempt($credentials)) {
       $request->session()->regenerate();
       toast()->success('Login success');
       return redirect()->intended($this->redirectTo());
-    } else {
-      return back()->withErrors([
-        'email' => 'The provided credentials do not match our records.',
-      ]);
     }
+
+    return back()->withErrors([
+      'email' => 'The provided credentials do not match our records.',
+    ]);
   }
 
-
-  public function register(Request $request)
+  public function register(RegisterRequest $request)
   {
-    $request->validate([
-      'name' => 'required|string|max:255',
-      'email' => 'required|string|email|max:255|unique:users',
-      'password' => 'required|string|min:8|confirmed',
-      'password_confirmation' => 'required|string|min:8',
-      // 'identity' => 'required|file|mimes:jpg,png,jpeg|max:2048',
-    ]);
-
+    $request->validated();
     $user = User::create([
       'name' => $request->name,
       'email' => $request->email,
       'password' => Hash::make($request->password),
-      // 'identity' => $request->file('identity')->store('public/identity'),
     ]);
 
     toast()->success('Register success');

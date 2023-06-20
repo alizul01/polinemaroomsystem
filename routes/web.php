@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\{
-  ApprovalController,
   AuthController,
   DashboardController,
   ReportingController,
@@ -10,12 +9,12 @@ use App\Http\Controllers\{
   SuperAdminController,
   UserController
 };
-use App\Models\Room;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth']], function () {
   Route::get('/', [DashboardController::class, 'index'])->name('index');
   Route::get('/room/{room}', [RoomController::class, 'show'])->name('room.show-user');
+
   Route::group(['prefix' => 'reservation'], function () {
     Route::get('/', [RoomReservationController::class, 'showStep1'])->name('reservation.index');
     Route::post('/', [RoomReservationController::class, 'postStep1'])->name('reservation.store');
@@ -48,4 +47,6 @@ Route::group(['middleware' => ['auth', 'super-admin']], function () {
   Route::get('/admin', [SuperAdminController::class, 'index'])->name('admin.index');
   Route::resource('/admin/user', UserController::class);
   Route::resource('/admin/room', RoomController::class);
+  Route::get('upload', [RoomController::class, 'showUploadRooms']);
+  Route::post('upload', [RoomController::class, 'uploadRooms'])->name('room.upload');
 });

@@ -64,21 +64,6 @@
       }
     });
 
-
-    // commmented because of apex chart width issue in desktop (in lg not in xl)
-    // // sidebar-folded on large devices
-    // function iconSidebar(e) {
-    //   if (e.matches) {
-    //     body.addClass('sidebar-folded');
-    //   } else {
-    //     body.removeClass('sidebar-folded');
-    //   }
-    // }
-    // var desktopMedium = window.matchMedia('(min-width:992px) and (max-width: 1199px)');
-    // desktopMedium.addListener(iconSidebar);
-    // iconSidebar(desktopMedium);
-
-
     // Settings sidebar toggle
     $('.settings-sidebar-toggler').on('click', function (e) {
       $('body').toggleClass('settings-open');
@@ -90,7 +75,6 @@
       $('body').removeClass('sidebar-light sidebar-dark');
       $('body').addClass($(this).val());
     });
-
 
     //  open sidebar-folded when hover
     $(".sidebar .sidebar-body").hover(

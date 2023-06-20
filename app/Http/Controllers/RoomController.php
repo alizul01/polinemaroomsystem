@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Room;
 use App\Http\Requests\StoreRoomRequest;
 use App\Http\Requests\UpdateRoomRequest;
+use App\Imports\RoomsImport;
 use App\Models\RoomReservation;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RoomController extends Controller
 {
@@ -79,5 +81,15 @@ class RoomController extends Controller
 
     toast()->success('Room deleted');
     return redirect()->route('room.index');
+  }
+
+  public function showUploadRooms()
+  {
+    return view('rooms.upload');
+  }
+  public function uploadRooms(Request $request)
+  {
+    Excel::import(new RoomsImport, $request->file);
+    return redirect()->route('admin.index')->with('success', 'User Imported Successfully');
   }
 }
