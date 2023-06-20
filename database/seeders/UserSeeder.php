@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
    */
   public function run(): void
   {
-    User::factory()->create([
+    User::create([
       'name' => 'Super Admin',
       'email' => env('SUPERADMIN_EMAIL'),
       'nomor_telepon' => '081234567890',
@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
       'organization_id' => 1,
     ]);
 
-    User::factory()->create([
+    User::create([
       'name' => 'Kepala Jurusan Teknologi Informasi',
       'email' => 'kajur@admin.com',
       'nomor_telepon' => '081234567890',
@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
       'organization_id' => 1,
     ]);
 
-    User::factory()->create([
+    User::create([
       'name' => 'Presiden BEM',
       'email' => 'bem@admin.com',
       'password' => Hash::make(env('ADMIN_PASSWORD')),
@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
       'organization_id' => 1,
     ]);
 
-    User::factory()->create([
+    User::create([
       'name' => 'Himpunan Mahasiswa Teknologi Informasi',
       'email' => 'hmti@admin.com',
       'password' => Hash::make(env('ADMIN_PASSWORD')),
@@ -50,7 +50,7 @@ class UserSeeder extends Seeder
       'organization_id' => 1,
     ]);
 
-    User::factory()->create([
+    User::create([
       'name' => 'Muhammad Ali Zulfikar',
       'email' => 'ali@example.com',
       'password' => Hash::make(env('USER_PASSWORD')),
@@ -59,7 +59,7 @@ class UserSeeder extends Seeder
       'organization_id' => 1,
     ]);
 
-    User::factory()->create([
+    User::create([
       'name' => 'Alfan Olivan',
       'email' => 'alivan@example.com',
       'password' => Hash::make(env('USER_PASSWORD')),
@@ -68,7 +68,7 @@ class UserSeeder extends Seeder
       'organization_id' => 1,
     ]);
 
-    User::factory()->create([
+    User::create([
       'name' => 'Anisa Rahmasari',
       'email' => 'anisa@example.com',
       'password' => Hash::make(env('USER_PASSWORD')),
@@ -77,7 +77,7 @@ class UserSeeder extends Seeder
       'organization_id' => 1,
     ]);
 
-    User::factory()->create([
+    User::create([
       'name' => 'Gabriel Dimas',
       'email' => 'gabriel@example.com',
       'password' => Hash::make(env('USER_PASSWORD')),
@@ -86,7 +86,7 @@ class UserSeeder extends Seeder
       'organization_id' => 1,
     ]);
 
-    User::factory()->create([
+    User::create([
       'name' => 'Ilham Yudantyo',
       'email' => 'ilham@example.com',
       'password' => Hash::make(env('USER_PASSWORD')),
