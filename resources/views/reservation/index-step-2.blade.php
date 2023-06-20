@@ -21,7 +21,7 @@
                             placeholder="Cari Ruangan..." required>
                     </div>
                 </form>
-                @include('user.partials.components.dropdown')
+                @include('components.dropdown')
             </div>
         </div>
         <form method="POST">

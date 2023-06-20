@@ -15,15 +15,9 @@ class RoomController extends Controller
    */
   public function index(Request $request)
   {
-    if ($request->has('floor')) {
-      $rooms = Room::where('floor', $request->floor)->paginate(6)->withQueryString();
-    } else {
-      $rooms = Room::paginate(6);
-    }
-    $isreservation = false;
+    $rooms = Room::paginate(5);
 
-    $status = RoomReservation::where('user_id', auth()->user()->id)->get();
-    return view('room.index', compact('rooms', 'status', 'isreservation'));
+    return view('rooms.index', compact('rooms'));
   }
 
   /**
@@ -31,7 +25,7 @@ class RoomController extends Controller
    */
   public function create()
   {
-    //
+    return view('rooms.create');
   }
 
   /**
@@ -39,7 +33,9 @@ class RoomController extends Controller
    */
   public function store(StoreRoomRequest $request)
   {
-
+    Room::create($request->validated());
+    toast()->success('Room created');
+    return redirect()->route('room.index');
   }
 
   /**
@@ -48,7 +44,11 @@ class RoomController extends Controller
   public function show(Room $room)
   {
     $roomReservation = RoomReservation::where('room_id', $room->id)->get();
-    return view('room.show', compact('room', 'roomReservation'));
+    if (auth()->user()->role == 'superadmin') {
+      return view('rooms.show', compact('room', 'roomReservation'));
+    }
+
+    return view('rooms.show-user', compact('room', 'roomReservation'));
   }
 
   /**
@@ -56,7 +56,7 @@ class RoomController extends Controller
    */
   public function edit(Room $room)
   {
-    //
+    return view('rooms.edit', compact('room'));
   }
 
   /**
@@ -64,7 +64,10 @@ class RoomController extends Controller
    */
   public function update(UpdateRoomRequest $request, Room $room)
   {
-    //
+    $room->update($request->validated());
+
+    toast()->success('Room updated');
+    return redirect()->route('room.index');
   }
 
   /**
@@ -72,6 +75,9 @@ class RoomController extends Controller
    */
   public function destroy(Room $room)
   {
-    //
+    $room->delete();
+
+    toast()->success('Room deleted');
+    return redirect()->route('room.index');
   }
 }

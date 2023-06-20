@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('master')
-    @include('user.partials.navbar')
+    @include('partials.navbar')
     <main class="flex gap-6 -mt-14 mb-10 px-10">
         <aside class="flex flex-col max-h-[25rem] gap-8 p-6 bg-white border border-gray-200 rounded-lg shadow-md w-1/3">
             <h1 class="font-medium text-xl">Alur Peminjaman</h1>

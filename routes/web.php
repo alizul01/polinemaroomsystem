@@ -6,15 +6,16 @@ use App\Http\Controllers\{
   DashboardController,
   ReportingController,
   RoomController,
-  RoomReservationController
+  RoomReservationController,
+  SuperAdminController,
+  UserController
 };
 use App\Models\Room;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth']], function () {
   Route::get('/', [DashboardController::class, 'index'])->name('index');
-  Route::resource('room', RoomController::class);
-
+  Route::get('/room/{room}', [RoomController::class, 'show'])->name('room.show-user');
   Route::group(['prefix' => 'reservation'], function () {
     Route::get('/', [RoomReservationController::class, 'showStep1'])->name('reservation.index');
     Route::post('/', [RoomReservationController::class, 'postStep1'])->name('reservation.store');
@@ -33,11 +34,6 @@ Route::group(['middleware' => ['auth']], function () {
       Route::get('/', [RoomReservationController::class, 'adminReservationIndex'])->name('admin.pages.approval');
       Route::put('/', [RoomReservationController::class, 'approve'])->name('admin.reservation.approve');
     });
-
-    Route::get('/test', function () {
-      $rooms = Room::paginate(6);
-      return view('admin.pages.home', compact('rooms'));
-    });
   });
 });
 
@@ -46,4 +42,10 @@ Route::group(['middleware' => ['guest']], function () {
   Route::view('/register', 'auth.register')->name('register');
   Route::post('/login', [AuthController::class, 'login']);
   Route::post('/register', [AuthController::class, 'register']);
+});
+
+Route::group(['middleware' => ['auth', 'super-admin']], function () {
+  Route::get('/admin', [SuperAdminController::class, 'index'])->name('admin.index');
+  Route::resource('/admin/user', UserController::class);
+  Route::resource('/admin/room', RoomController::class);
 });
