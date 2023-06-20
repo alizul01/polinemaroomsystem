@@ -27,6 +27,6 @@ class DashboardController extends Controller
       })->count()
     ];
     $log = RoomReservation::orderBy('created_at', 'desc')->take(5)->get();
-    return view('user.dashboard', compact('rooms', 'roomcount', 'status', 'log', 'roomsData'));
+    return view('index', compact('rooms', 'roomcount', 'status', 'log', 'roomsData'));
   }
 }

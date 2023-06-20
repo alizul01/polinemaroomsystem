@@ -16,7 +16,7 @@ class RoomReservationController extends Controller
     $rooms = Room::all();
     $organizations = Organization::all();
     $step = 1;
-    return view('user.partials.components.reservasi-step1', compact('rooms', 'organizations', 'step'));
+    return view('reservation.index-step-1', compact('rooms', 'organizations', 'step'));
   }
 
   public function postStep1(RoomReservationPostStepOne $request)
@@ -67,7 +67,7 @@ class RoomReservationController extends Controller
       return redirect()->route('form.step1');
     }
 
-    return view('user.partials.components.reservasi-step2', compact('step', 'rooms'));
+    return view('reservation.index-step-2', compact('step', 'rooms'));
   }
 
   public function postStep2(Request $request)
@@ -116,7 +116,7 @@ class RoomReservationController extends Controller
     foreach ($reservations as $reservation) {
       $reservation->reservationStatus();
     }
-    return view('user.reservation-status', compact('reservations'));
+    return view('reservation.status', compact('reservations'));
   }
 
   public function approve(Request $request)
@@ -148,6 +148,6 @@ class RoomReservationController extends Controller
   public function adminReservationIndex()
   {
     $reservations = RoomReservation::all();
-    return view('admin.pages.peminjaman', compact('reservations'));
+    return view('approval.index', compact('reservations'));
   }
 }

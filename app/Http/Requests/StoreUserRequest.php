@@ -23,6 +23,10 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
+            'email' => 'required|unique:users|string|email|max:255',
+            'password' => 'required|string|min:8',
+            'role' => 'required|string|in:user,superadmin,bem,kajur,hmti',
+            'organization_id' => 'nullable|exists:organizations,id',
         ];
     }
 }

@@ -1,8 +1,11 @@
 /// <reference types="cypress" />
 
 describe('Dashboard Test', () => {
-  beforeEach(() => {
+  before(() => {
     cy.exec('php artisan migrate:fresh --seed');
+  })
+
+  beforeEach(() => {
     cy.visit('/login');
     cy.get('input[name="email"]').type('ali@example.com');
     cy.get('input[name="password"]').type('password');
@@ -25,7 +28,7 @@ describe('Dashboard Test', () => {
   });
 
   it('should can click process link and show process page', () => {
-    cy.get('a[href="/process"]').click();
+    cy.contains('proses').click();
     cy.location('pathname').should('eq', '/process');
   });
 

@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+  protected function redirectTo()
+  {
+    if (auth()->user()->role == 'superadmin') {
+      return '/admin';
+    }
+    return '/';
+  }
+
   public function login(Request $request)
   {
     $request->validate([
@@ -21,7 +29,7 @@ class AuthController extends Controller
     if (Auth::attempt($credentials)) {
       $request->session()->regenerate();
       toast()->success('Login success');
-      return redirect()->route('index');
+      return redirect()->intended($this->redirectTo());
     } else {
       return back()->withErrors([
         'email' => 'The provided credentials do not match our records.',
