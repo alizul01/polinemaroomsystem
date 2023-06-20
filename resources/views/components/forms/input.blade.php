@@ -8,16 +8,20 @@
                 <i class="bx bx-lock-alt text-xl text-gray-500"></i>
             @elseif($icon == 'user')
                 <i class="bx bx-user text-xl text-gray-500"></i>
+            @elseif($icon == 'phone')
+                <i class="bx bx-phone text-xl text-gray-500"></i>
+            @elseif($icon == 'nomor_induk')
+                <i class="bx bx-id-card text-xl text-gray-500"></i>
             @endif
         </div>
         @if ($autofocus == 'true')
             <input type="{{ $type }}" id="{{ $name }}" name="{{ $name }}"
                 class="w-full py-3 pl-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                placeholder="{{ $placeholder }}" value="{{ old($name) }}" autofocus />
+                placeholder="{{ $placeholder }}" value="{{ old($name) }}" autofocus required />
         @else
             <input type="{{ $type }}" id="{{ $name }}" name="{{ $name }}"
                 class="w-full py-3 pl-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                placeholder="{{ $placeholder }}" value="{{ old($name) }}" />
+                placeholder="{{ $placeholder }}" value="{{ old($name) }}" required />
         @endif
     </div>
 

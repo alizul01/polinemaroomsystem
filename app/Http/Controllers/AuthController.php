@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,15 @@ class AuthController extends Controller
       return '/admin';
     }
     return '/';
+  }
+
+  public function showLogin() {
+    return view('auth.login');
+  }
+
+  public function showRegister() {
+    $organizations = Organization::all();
+    return view('auth.register', compact('organizations'));
   }
 
   public function login(LoginRequest $request)
@@ -42,6 +52,9 @@ class AuthController extends Controller
       'name' => $request->name,
       'email' => $request->email,
       'password' => Hash::make($request->password),
+      'organization_id' => $request->organization_id,
+      'phone_number' => $request->phone_number,
+      'nomor_induk' => $request->nomor_induk,
     ]);
 
     toast()->success('Register success');

@@ -18,7 +18,17 @@
             autofocus="false" />
         <x-forms.input type="password" name="password_confirmation" label="Confirm Password" placeholder="********"
             icon="password" autofocus="false" />
-        {{-- <x-forms.file-input name="identity" label="Identity File" /> --}}
+        <x-forms.input type="text" name="phone_number" label="Phone Number" placeholder="08xxxxxxxxxx" icon="phone"
+            autofocus="false" />
+        <x-forms.input type="text" name="nomor_induk" label="Nomor Induk" placeholder="xxxxxxxxxx" icon="nomor_induk"
+            autofocus="false" />
+        <select name="organization_id" id="organization_id"
+            class="rounded-lg p-3 text-center focus:ring-4 focus:outline-none focus:ring-gray-100">
+            <option value="" disabled selected>Select Organization</option>
+            @foreach ($organizations as $organization)
+                <option value="{{ $organization->id }}">{{ $organization->name }}</option>
+            @endforeach
+        </select>
 
         <button type="submit" id="register"
             class="text-white bg-gray-700 font-medium rounded-lg p-3 text-center hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-100">
