@@ -41,8 +41,11 @@
                                 <span>{{ $columns[$key] ?? $key }}</span>
                             </td>
                             <td class="px-16 py-2">
-                                @if (in_array($key, ['start_date', 'end_date', 'start_time', 'end_time']))
+                                @if (in_array($key, ['start_date']))
                                     <span>{{ \Carbon\Carbon::parse($value)->isoFormat('LL') }}</span>
+                                @elseif (in_array($key, ['start_time', 'end_time']))
+                                    <span class="text-green-500">{{ \Carbon\Carbon::parse($value)->isoFormat('HH:mm') }}
+                                    </span>
                                 @else
                                     <span>{{ $value }}</span>
                                 @endif
