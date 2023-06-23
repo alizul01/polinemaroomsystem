@@ -162,10 +162,11 @@
   "": {
     "name": null,
     "domain": null,
-    "action": "App\\Http\\Controllers\\AuthController@register",
-    "uri": "register",
+    "action": "App\\Http\\Controllers\\RoomController@showUploadRooms",
+    "uri": "upload",
     "method": [
-      "POST"
+      "GET",
+      "HEAD"
     ]
   },
   "index": {
@@ -296,7 +297,7 @@
   "login": {
     "name": "login",
     "domain": null,
-    "action": "\\Illuminate\\Routing\\ViewController",
+    "action": "App\\Http\\Controllers\\AuthController@showLogin",
     "uri": "login",
     "method": [
       "GET",
@@ -306,7 +307,7 @@
   "register": {
     "name": "register",
     "domain": null,
-    "action": "\\Illuminate\\Routing\\ViewController",
+    "action": "App\\Http\\Controllers\\AuthController@showRegister",
     "uri": "register",
     "method": [
       "GET",
@@ -457,6 +458,15 @@
     "uri": "admin/room/{room}",
     "method": [
       "DELETE"
+    ]
+  },
+  "room.upload": {
+    "name": "room.upload",
+    "domain": null,
+    "action": "App\\Http\\Controllers\\RoomController@uploadRooms",
+    "uri": "upload",
+    "method": [
+      "POST"
     ]
   }
 }

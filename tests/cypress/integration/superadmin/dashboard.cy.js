@@ -4,7 +4,7 @@ describe('SuperAdmin Tests', () => {
   beforeEach(() => {
     cy.visit('/login')
     cy.get('input[name=email]').type('polarys@superadmin.com')
-    cy.get('input[name=password]').type('polarys#2023admproj1')
+    cy.get('input[name=password]').type('password')
     cy.get('.text-white').click();
     cy.url().should('include', '/admin')
   })

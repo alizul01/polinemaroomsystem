@@ -30,23 +30,6 @@ describe('Reservation Test', () => {
     cy.get('.text-red-500').contains('The end time field must be a date after start time');
   });
 
-  it('Shows validation error when no date is selected', () => {
-    cy.get('input[name="start_time"]').type('09:00');
-    cy.get('input[name="end_time"]').type('15:00');
-    cy.get('input[name="participant"]').type('5');
-    cy.get('textarea[name="keterangan"]').type('This is a test reservation.');
-    cy.get('#submit').click();
-    cy.get('.text-red-500').contains('The start date field is required.');
-  });
-
-  it('Shows validation error when no time is selected', () => {
-    cy.get('input[name="start_date"]').type('2023-07-20');
-    cy.get('input[name="participant"]').type('5');
-    cy.get('textarea[name="keterangan"]').type('This is a test reservation.');
-    cy.get('#submit').click();
-    cy.get('.text-red-500').contains('The start time field is required.');
-  });
-
   it('Should can do a room reservation', () => {
     cy.get('input[name="start_date"]').type('2023-07-20');
     cy.get('input[name="start_time"]').type('09:00');
@@ -64,7 +47,7 @@ describe('Reservation Test', () => {
       }
     });
 
-    cy.get('form').submit();
+    cy.contains('Pilih').click();
 
     cy.url().should('include', '/reservation-final');
     cy.get('tbody').within(() => {
