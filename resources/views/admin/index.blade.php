@@ -30,7 +30,7 @@
                         </div>
                         <div class="d-grid">
                             <button class="btn btn-primary">
-                                <a href="{{ route('user.index') }}" class="text-white">Manage Akun User</a>
+                                <a href="/admin/user" class="text-white">Manage Akun User</a>
                             </button>
                         </div>
                     </div>

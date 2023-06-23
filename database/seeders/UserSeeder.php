@@ -29,6 +29,7 @@ class UserSeeder extends Seeder
       'nomor_telepon' => '081234567890',
       'password' => Hash::make(env('ADMIN_PASSWORD')),
       'role' => "kajur",
+      'nomor_induk' => '1234567890',
       'organization_id' => 1,
     ]);
 
@@ -38,6 +39,7 @@ class UserSeeder extends Seeder
       'password' => Hash::make(env('ADMIN_PASSWORD')),
       'role' => "bem",
       'nomor_telepon' => '081234567890',
+      'nomor_induk' => '1234567890',
       'organization_id' => 1,
     ]);
 
@@ -47,6 +49,7 @@ class UserSeeder extends Seeder
       'password' => Hash::make(env('ADMIN_PASSWORD')),
       'role' => "hmti",
       'nomor_telepon' => '081234567890',
+      'nomor_induk' => '1234567890',
       'organization_id' => 1,
     ]);
 
@@ -56,6 +59,7 @@ class UserSeeder extends Seeder
       'password' => Hash::make(env('USER_PASSWORD')),
       'role' => "user",
       'nomor_telepon' => '081234567890',
+      'nomor_induk' => '1234567890',
       'organization_id' => 1,
     ]);
 
@@ -65,6 +69,7 @@ class UserSeeder extends Seeder
       'password' => Hash::make(env('USER_PASSWORD')),
       'role' => "user",
       'nomor_telepon' => '081234567890',
+      'nomor_induk' => '1234567890',
       'organization_id' => 1,
     ]);
 
@@ -74,6 +79,7 @@ class UserSeeder extends Seeder
       'password' => Hash::make(env('USER_PASSWORD')),
       'role' => "user",
       'nomor_telepon' => '081234567890',
+      'nomor_induk' => '1234567890',
       'organization_id' => 1,
     ]);
 
@@ -83,6 +89,7 @@ class UserSeeder extends Seeder
       'password' => Hash::make(env('USER_PASSWORD')),
       'role' => "user",
       'nomor_telepon' => '081234567890',
+      'nomor_induk' => '1234567890',
       'organization_id' => 1,
     ]);
 
@@ -92,6 +99,7 @@ class UserSeeder extends Seeder
       'password' => Hash::make(env('USER_PASSWORD')),
       'role' => "user",
       'nomor_telepon' => '081234567890',
+      'nomor_induk' => '1234567890',
       'organization_id' => 1,
     ]);
   }
