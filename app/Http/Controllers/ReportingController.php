@@ -46,7 +46,7 @@ class ReportingController extends Controller
       'waktu_peminjaman' => Carbon::parse($roomReservation->start_time)->format('H:i') . ' - ' . Carbon::parse($roomReservation->end_time)->format('H:i'),
       'waktu' => Carbon::parse($roomReservation->start_time)->format('H:i'),
       'nama' => $roomReservation->user->name,
-      'nim' => $roomReservation->user->nomor_indux,
+      'nim' => $roomReservation->user->nomor_induk,
       'nomor_telpon' => '081234567890',
       'nama_kajur' => 'Dr. Eng. Nur Yan, S.T., M.T.',
       'nip_kajur' => '196908011997021001',
